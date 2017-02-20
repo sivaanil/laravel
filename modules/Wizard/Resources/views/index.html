@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Smart Wizard 3 Testing</title>
+        <script src="smartwizard/js/jquery-2.0.0.min.js"></script>
+        <link rel="stylesheet" href="smartwizard/styles/smart_wizard.css"/>
+        <script src="smartwizard/js/jquery.smartWizard.js"></script>
+    </head>
+    <body>
+        <script>
+            $(function() {
+                $('#wizard').smartWizard();
+
+            });
+        </script>
+
+        <div id="wizard" class="swMain">
+            <ul>
+                <li><a href="#step-1">
+                    <label class="stepNumber">1</label>
+                    <span class="stepDesc">
+                        Step 1<br />
+                    </span>
+                </a></li>
+                <li><a href="#step-2">
+                    <label class="stepNumber">2</label>
+                    <span class="stepDesc">
+                        This is a longer step description<br />
+                    </span>
+                </a></li>
+            </ul>
+            <div id="step-1">
+                Here is some stuff. I hate you.
+            </div>
+            <div id="step-2">
+                Here is some more stuff. You suck.
+            </div>
+        </div>
+
+    </body>
+
+</html>

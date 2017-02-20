@@ -1,0 +1,363 @@
+#theMenuDiv {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+#jqxSearchMenu {
+    padding-right: 15;
+    padding-left: 0;
+    border: none;
+    width: 200px;
+    margin: none;
+}
+
+#theSearchMenuli {
+    width: 200px;
+}
+
+.jqx-menu-title {
+
+    padding-right: 0px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.jqx-menu-item-top {
+    /*Not exclusivly the manu bar this effects the fliter menu on grids
+    padding-left: 0px;
+    padding-right: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;*/
+    margin-top: 0px;
+    border: none;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.select2-search input {
+    background: "";
+}
+
+.jqx-menu ul {
+    padding: 0px;
+}
+
+.jqx-menu-item-separator {
+    margin-left: 0px;
+    margin-right: 10px;
+}
+
+#breadcrumbContainer {
+    position: relative;
+    height: 39px;
+    background-color: #DADADA;
+}
+
+#breadcrumbButtonLeftDiv {
+    z-index: 2;
+    display: none;
+    float: left;
+
+}
+
+#breadcrumbButtonRightDiv {
+    display: none;
+    float: right;
+
+}
+
+.breadcrumbButton {
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    background-color: #DADADA;
+    color: #000;
+    border: 1px solid black;
+    z-index: 2;
+}
+
+#breadcrumbInner {
+    width: 100%;
+    overflow: auto;
+    height: 100%;
+
+}
+
+#makeMeScrollable {
+    float: left;
+    margin-left: 10px;
+    left: 0px;
+    right: 0px;
+    position: absolute;
+}
+
+#makeMeScrollable div.scrollableArea * {
+    position: relative;
+    float: left;
+    margin: 0;
+/ / width : 150 px;
+    height: 39px;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+}
+
+#makeMeScrollable div.scrollableArea {
+    line-height: 17px;
+}
+
+.parallelogram {
+    max-width: 160px;
+    height: 100px;
+    border: 1px solid black;
+
+    -webkit-transform: skew(-20deg);
+    -moz-transform: skew(-20deg);
+    -o-transform: skew(-20deg);
+    transform: skew(-20deg);
+    -ms-transform: skew(-20deg);
+
+    background: #DADADA;
+    /*word-break: break-all;*/
+    word-wrap: break-word;
+    padding-right: 3px;
+    background-color: #DADADA;
+    position: relative;
+}
+
+.parallelogram:first-child {
+    margin-left: 10px ! important;
+}
+
+#crumb0 {
+    margin-left: 10px !important;
+}
+
+.crumbText {
+    text-align: center;
+    position: relative;
+    height: auto ! important;
+    top: 50%;
+    padding-left: 6px;
+    padding-right: 0px;
+    -webkit-transform: translateY(-50%) skew(20deg);
+    -moz-transform: translateY(-50%) skew(20deg);
+    -o-transform: translateY(-50%) skew(20deg);
+    transform: translateY(-50%) skew(20deg);
+    -ms-transform: translateY(-50%) skew(20deg);
+    cursor: pointer;
+    color: #428BCA;
+    text-decoration: underline;
+}
+
+.crumbText:hover {
+
+    text-decoration: none;
+
+}
+
+.crumbText.longCrumb {
+    font-size: 11px;
+}
+
+.crumbText.extraLongCrumb {
+    font-size: 10px;
+    line-height: 13px;
+}
+
+.jqx-menu-item-top label[style] {
+    position: relative !important;
+    padding-left: 15px;
+}
+
+.jqx-menu-item-top img {
+    position: relative;
+    top: 2px;
+}
+
+#e3 {
+    margin-right: 20px;
+}
+
+.jqx-menu-dropdown label[style] {
+    position: relative !important;
+    padding-left: 15px;
+}
+
+.jqx-menu-dropdown img {
+    /* margin-right: -20px; */
+}
+
+/*When the menu is minimized*/
+.jqx-menu-minimized-custom {
+    background: none repeat scroll 0 0 #1c59ae;
+}
+
+/*When the menu is expanded color the dropdown area (Actions)*/
+.jqx-menu-dropdown-custom, .jqx-menu-popup ul {
+    background: none repeat scroll 0 0 #1c59ae;
+}
+
+/*When the menu is expanded color the dropdown area (Actions)*/
+.jqx-menu-item-top-custom {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.custom-menu-image {
+    position: absolute;
+    left: 0;
+}
+
+.custom-menu-entry label[style] {
+    color: #fff ! important;
+    position: absolute ! important;
+    right: 0 ! important;
+    left: 0 ! important;
+    margin-left: 18px ! important;
+    margin-bottom: 0px ! important;
+    vertical-align: middle ! important;
+}
+
+#jqxMainMenu[style] {
+    height: 30px ! important;
+}
+
+#jqxMainMenu .jqx-item a {
+    display: block ! important;
+    padding-top: 9px ! important;
+    padding-bottom: 9px ! important;
+    /* height: 14px ! important; */
+}
+
+.jqx-menu-item-top-hover a {
+    color: #000 ! important;
+}
+
+.jqx-menu-item-hover.jqx-fill-state-hover {
+    background: #AAA ! important;
+    background-color: #AAA ! important;
+}
+
+.select2-drop-active[style] {
+    left: auto ! important;
+    right: 0px ! important;
+}
+
+#select2-drop {
+    margin-top: -35px;
+    padding-top: 3px;
+}
+
+#theSearchMenuInput {
+    height: 25px;
+    position: relative;
+    top: 2px;
+}
+
+#advancedSearchOptions {
+    list-style: none;
+    list-style-type: none;
+    padding-left: 10px;
+    margin-bottom: 2px;
+}
+
+#advancedSearchOptions input {
+    position: relative;
+    top: 2px;
+    margin-right: 5px;
+}
+
+.select2-no-results {
+    font-size: 12px;
+}
+
+#main-header {
+    background-color: #0b59af;
+    background-image: url('../../../img/img/header_background.png');
+    background-size: 100% 100%;
+    padding: 3px 0px 3px 10px;
+    color: #FFF;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.c2-sitegate #main-header {
+    background-color: #FFF;
+    background-image: url('../../../img/img/header_background_sitegate.png');
+}
+
+#under-development-banner {
+    float: right;
+    background-image: url('../img/img/caution-tape.jpg');
+    background-size: 100% 100%;
+    margin-right: 0px;
+    margin-top: -3px;
+    padding: 3px 8px 3px 8px;
+}
+
+#under-development-banner span {
+    background: rgba(0, 0, 0, 0.9);
+    padding-left: 3px;
+    padding-right: 3px;
+    color: yellow;
+}
+
+/* Resizes for smaller/older mobile devices */
+@media only screen and (max-width: 650px) {
+    #main-header {
+        padding: 0 0 0 0;
+    }
+
+    #main-header-text {
+        display: none;
+    }
+
+    #under-development-banner {
+        /*
+        font-size: 13px;
+        float: none;
+        text-align: center;
+        width: 100%;
+        padding-top: 5px;
+        padding-bottom: 1px;
+        */
+        display: none;
+    }
+}
+
+/* Resizes for smaller/older mobile devices */
+@media only screen and (max-width: 800px) {
+    #jqxSearchMenu {
+        padding-right: 15;
+        padding-left: 0;
+        border: none;
+        width: 44px;
+        margin: none;
+    }
+
+    #jqxSearchMenu img {
+        position: relative;
+        padding: 5px 8px 5px 8px;
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    #theSearchMenuli {
+        width: 44px;
+    }
+
+    #theSearchMenuInput {
+        display: none;
+    }
+
+    #select2-drop {
+        margin-top: 2px;
+    }
+}

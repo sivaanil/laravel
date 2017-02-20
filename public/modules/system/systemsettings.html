@@ -1,0 +1,78 @@
+<div class="title-bar">
+  <h4>System Settings</h4>
+</div>
+<div  ng-controller="formCtrl as form" data-url="/system/settings" form-component>
+  <form class="form-horizontal" role="form" ng-controller="systemCtrl as system">
+    <div class="container-fluid">
+      <div class="col-xs-12 sm-12 col-md-12 col-lg-10 form-column container-fluid">
+        <div class="col-xs-12 form-section">
+          <h5>System Information:</h5>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-4">Disk Usage:</label>
+            <div class="col-xs-12 col-sm-8">
+              <span data-toggle="tooltip" data-placement="top"  title="{!! systemLocalization.dskAvailTooltip !!}">{!!formData.dskAvail!!}%</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-4">Memory Usage:</label>
+            <div class="col-xs-12 col-sm-8">
+              <span data-toggle="tooltip" data-placement="top"  title="{!! systemLocalization.memTotalRealTooltip !!}">{!!formData.memTotalReal!!}%</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-4">CPU Usage:</label>
+            <div class="col-xs-12 col-sm-8">
+              <span data-toggle="tooltip" data-placement="top"  title="{!! systemLocalization.ssCpuUserTooltip !!}">{!!formData.ssCpuUser!!}%</span>
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.sitegateId">
+            <label class="control-label col-xs-12 col-sm-4">SiteGate ID:</label>
+            <div class="col-xs-12 col-sm-8">
+              <span data-toggle="tooltip" data-placement="top"  title="{!! systemLocalization.sitegateIdTooltip !!}">{!!formData.sitegateId!!}</span>
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.uiVersion">
+            <label class="control-label col-xs-12 col-sm-4">UI Version:</label>
+            <div class="col-xs-12 col-sm-8">
+              <span data-toggle="tooltip" data-placement="top" >{!!formData.uiVersion!!}</span>
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.cswapiVersion">
+            <label class="control-label col-xs-12 col-sm-4">Server Version:</label>
+            <div class="col-xs-12 col-sm-8">
+              <span data-toggle="tooltip" data-placement="top" >{!!formData.cswapiVersion!!}</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-4" for="timezone">Timezone:</label>
+            <div class="col-sm-6 lg-4" form-validation-field="timezone">
+              <select id="timezone"
+                    ng-model="formData.timezone"
+                    ng-change="updateTimezone(formData.timezone)"
+                    ng-options="option.php_name as option.description for option in formData.timezoneOptions" data-toggle="tooltip" data-placement="top"  title="Timezone">
+              </select>
+            </div>
+          </div>
+      </div>
+      <div class="col-xs-12 col-md-12 buttons-right-aligned" ng-show="$root.serverType == 'sitegate'">
+        <div class="form-group">
+          <button class="btn btn-default btn-reboot" ng-click="openRebootSystemWindow()" data-toggle="tooltip" data-placement="top"  title="{!! systemLocalization.rebootButtonTooltip !!}">Reboot</button>
+          <button class="btn btn-default btn-reboot" ng-click="openResetGuacamoleWindow()" data-toggle="tooltip" data-placement="top"  title="{!! systemLocalization.resetBrowserButtonTooltip !!}">Reset Browser</button>
+          <button class="btn btn-default btn-validation-report" ng-click="exportValidationReport()" data-toggle="tooltip" data-placement="top"  title="{!! systemLocalization.validationReportButtonTooltip !!}">Validation Report</button>
+          <!-- <button class="btn btn-default btn-factory-reset">Factory Reset</button> -->
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div style="display: none;">
+  <div id="rebootSystemWindow" class="c2-dialog">
+    <div>Reboot</div>
+    <div id="rebootSystemWindowContent"></div>
+  </div>
+  <div id="resetGuacamoleWindow" class="c2-dialog">
+    <div>Reset Web Browser</div>
+    <div id="resetGuacamoleWindowContent"></div>
+  </div>
+</div>
+

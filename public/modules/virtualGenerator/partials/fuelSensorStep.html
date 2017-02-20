@@ -1,0 +1,54 @@
+<div class="col-xs-12 form-section">
+    <h2 class="StepTitle">{!!virtualLocalization.fsConfiguration!!}</h2>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-5" for="fuelSensorList">{!!virtualLocalization.chooseFSConfig!!}</label>
+        <div class="col-xs-12 col-sm-6 col-md-7" form-validation-field="fuelSensor">
+          <select id="fuelSensor" name="fuelSensor" class="form-control" ng-model="formData.fuelSensorList" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.chooseFSConfigTT !!}">
+            <option ng-repeat="option in fuelSensorList" value="{!!option.id!!}" data-ng-selected="{!!option.selected!!}">{!!option.mainDevice!!} {!!option.subDevice!!}</option>
+          </select>
+        </div>
+    </div>
+    <div class="form-field-wizard-error" id="msg_fuelSensor">&nbsp</div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-5" for="deviceNameFS">{!!virtualLocalization.chooseName!!}</label>
+        <div class="col-xs-12 col-sm-6 col-md-7">
+          <input type="text" class="form-control" id="deviceNameFS" ng-model="deviceNameFS" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.chooseFSNameTT !!}" placeholder="{!!virtualLocalization.enterthe!!} {!!virtualLocalization.Name!!}">
+        </div>
+    </div>
+    <div class="form-field-wizard-error" id="msg_deviceNameFS">&nbsp</div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-5" for="defaultRange">{!!virtualLocalization.chooseFSDefaultRange!!}</label>
+        <div class="col-xs-12 col-sm-6 col-md-7" form-validation-field="defaultRange">
+          <select id="defaultRange" name="defaultRange" class="form-control" ng-model="defaultRange" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.chooseFSDefaultRangeTT !!}">
+            <option ng-repeat="option in defaultRangeList" value="{!!option.id!!}" data-ng-selected="{!!option.selected!!}">{!!option.range!!} {!!option.measurement!!}</option>
+          </select>
+        </div>
+    </div>
+    <div class="form-field-wizard-error" id="msg_defaultRange">&nbsp</div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-5" for="gaugeRange">{!!virtualLocalization.chooseFSGaugeRange!!}</label>
+        <div class="col-xs-12 col-sm-6 col-md-7" form-validation-field="gaugeRange">
+            {!!virtualLocalization.min!!}<input type="number" name="quantity" min="0" max="100" id="minGR" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.chooseFSGaugeRangeTT !!}">
+            {!!virtualLocalization.max!!}<input type="number" name="quantity" min="0" max="100" id="maxGR" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.chooseFSGaugeRangeTT !!}">
+            <select id="gaugeRange" name="gaugeRange" class="form-wizard-control" ng-model="gaugeRange" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.chooseFSGaugeRangeTT !!}">
+                <option ng-repeat="option in gaugeRangeList" value="{!!option!!}" data-ng-selected="{!!option!!}">{!!option!!}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-field-wizard-error" id="msg_gaugeRange">&nbsp</div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-5" for="fuelLevel">{!!virtualLocalization.chooseFSFuelLevel!!}</label>
+        <div class="col-xs-12 col-sm-6 col-md-7" form-validation-field="fuelLevel">
+            {!!virtualLocalization.min!!}<input type="number" min="0" max="100" id="minFL" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.chooseFSFuelLevelTT !!}">
+            {!!virtualLocalization.max!!}<input type="number" min="0" max="100" id="maxFL" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.chooseFSFuelLevelTT !!}">
+        </div>
+    </div>
+    <div class="form-field-wizard-error" id="msg_fuelLevel">&nbsp</div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-5" for="fuelCapacity">{!!virtualLocalization.chooseFSFuelCapacity!!}</label>
+        <div class="col-xs-12 col-sm-6 col-md-7" form-validation-field="fuelCapacity">
+            <input type="number" min="0" max="1000" id="tankFC" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.chooseFSFuelCapacityTT !!}">
+        </div>
+    </div>
+    <div class="form-field-wizard-error" id="msg_fuelCapacity">&nbsp</div>
+</div>

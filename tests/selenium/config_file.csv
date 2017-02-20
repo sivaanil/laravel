@@ -1,0 +1,13 @@
+ITEM,VALUE,CODE
+ip address,choose,
+qc-1,192.168.8.192,1
+qc-2,192.168.10.156,2
+qc-dc,192.168.8.195,d
+VM,127.0.0.1,vm
+franz,192.168.8.189,f
+,,
+long timeout,20,
+mid timeout,10,
+short timeout,5,
+root node,5000,
+skip builds,no,

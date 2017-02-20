@@ -1,0 +1,38 @@
+=====TO CREATE C2 SELENIUM TESTS IN PYTHON=====
+
+1. Use selenium IDE in firefox to create the test framework
+2. In the selenium IDE click file->export test case as-> Python2/unittest/WebDriver
+3. Choose a name and directory for your file. (Should be named appropriately and in a fitting folder. If a fitting folder doesnt exist, create a new one!!)
+4. Open cmd
+5. cd to root testing directory (The one this readme is in)
+6. "python format_selenium_test.py 'path_to_test_file/test_file_name.py'"
+
+Your formatted test case is now complete
+
+
+=====TO CREATE C2 SELENIUM TEST SUITES IN PYTHON=====
+
+1. Have a set of C2 tests you would wish to make a suite out of in a single folder.
+2. Open cmd
+3. cd to root testing directory (The one this readme is in)
+4. "python format_test_suite.py 'test_directory' 'NameOfNewSuite'"
+
+Your formatted test suite is now created inside "test_directory" named "NameOfTestSuite.py"
+
+
+=====TO RUN A C2 TEST SUITE=====
+
+1. Open cmd
+2. cd to directory your test_suite.py is in
+3. "python test_suite.py 'web_driver'" (webdriver can currently only be 'firefox' or 'chrome')
+
+Python will open a *webdriver* window (firefox/chrome etc.) and run through the tests. The output and results will be in the cmd window
+
+
+=====TO RUN A C2 TEST CASE=====
+
+1. Open cmd
+2. cd to directory your test_case.py is in
+3. "python test_case.py" (Will currently only use firefox for a single C2 test_case)
+
+Python will open a firefox window and run through the test. The output and results will be in the cmd window

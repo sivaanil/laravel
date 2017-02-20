@@ -1,0 +1,353 @@
+// Remove biosdevname so we get eth0, eth1 to ethN device names
+sudo apt-get update
+sudo apt-get install openssh-server
+
+sudo shutdown -r now
+
+sudo apt-get purge biosdevname 
+sudo update-initramfs -u
+
+sudo grub-install /dev/sda
+sudo grub-install /dev/sdb
+sudo update-grub /dev/sda
+sudo update-grub /dev/sdb
+
+// Update grub's 00_header to solve "Disk filter writes are not supported" error on boot
+// http://askubuntu.com/questions/468466/why-this-occurs-error-diskfilter-writes-are-not-supported
+wget https://gist.githubusercontent.com/rarylson/da6b77ad6edde25529b2/raw/99f266a10e663e1829efc25eca6eddb9412c6fdc/00_header_patched
+sudo mv /etc/grub.d/00_header /etc/grub.d/00_header.orig
+	(prompts for password)
+sudo mv 00_header_patched /etc/grub.d/00_header
+sudo chmod -x /etc/grub.d/00_header.orig
+sudo chmod +x /etc/grub.d/00_header
+sudo update-grub
+
+sudo apt-get install apache2
+	(Y)
+
+// Apache config. Marc or someone can decide what we really do here. httpd.conf is no longer used.
+// We need to give it a host name to avoid a warning when restarting Apache
+// Create /etc/apache2/conf-available/sitegate.conf
+// Add one line
+
+//sudo nano /etc/apache2/conf-available/sitegate.conf
+//ServerName SiteGate
+
+//sudo a2enconf sitegate
+//service apache2 reload
+
+sudo apt-get install php5 libapache2-mod-php5
+	(Y)
+
+sudo apt-get install php5-mysql
+	(Y)
+sudo apt-get install php-pear
+sudo apt-get install php5-curl
+	(Y)
+sudo apt-get install php5-mcrypt
+	(Y)
+sudo apt-get install php5-imap
+	(Y)
+sudo apt-get install mysql-server
+	(Y)
+	(enter the applicable password)
+sudo apt-get install bridge-utils
+sudo apt-get install htop
+sudo apt-get install vim
+	(Y)
+sudo apt-get install rrdtool
+	(Y)
+sudo apt-get install snmp
+	(Y)
+sudo apt-get install ethtool
+sudo apt-get install iperf
+sudo apt-get install subversion
+	(Y)
+sudo apt-get install expect
+	(Y)
+sudo apt-get install tmux
+	(Y)
+sudo apt-get install fping
+sudo apt-get install curl
+sudo php5enmod mcrypt
+sudo apt-get install git
+	(Y)
+sudo apt-get install php5-dev
+	(Y)
+sudo apt-get install beanstalkd
+
+sudo apt-get install openbox
+	(Y)
+sudo apt-get install guacamole
+	(Y)
+sudo apt-get install dbus-x11
+sudo apt-get install firefox
+	(Y)
+sudo apt-get install libcurl4-gnutls-dev
+	(Y)
+sudo pecl install pecl_http-1.7.6
+	(answer all defaults)
+sudo pear install net_ping auth_sasl mail net_smtp mail_mime
+
+sudo apt-get install supervisor
+sudo apt-get install tomcat7
+sudo apt-get install at
+
+// not installed
+snmpd
+python
+python-dev
+python-pip 
+
+// -----------------------
+
+sudo a2enmod ssl
+sudo a2enmod rewrite
+sudo service apache2 restart
+
+sudo nano /etc/php5/cli/php.ini
+
+max_execution_time = 300
+memory_limit = -1	
+include_path = ".:/usr/share/php:/var/www:/usr/share/php:/usr/share/php/Net"
+extension=http.so	
+upload_max_filesize = 1024M
+post_max_size = 1024M
+
+Ctrl + x
+
+sudo nano /etc/php5/apache2/php.ini
+
+max_execution_time = 300
+memory_limit = -1
+include_path = ".:/usr/share/php:/var/www:/usr/share/php:/usr/share/php/Net"
+extension=http.so	
+upload_max_filesize = 1024M
+post_max_size = 1024M
+
+cd /etc/apache2
+sudo mkdir ssl
+cd ssl
+// --days sets expiry date
+sudo openssl req -new -x509 -nodes -days 3650 -out server.crt -keyout server.key
+Country: US
+Organization Name: C Squared Systems L.L.C.
+Common Name: SiteGate
+
+// ---------------------------------------
+// this allows the .htaccess file in /public to work
+// there might be a better way to do this.
+In /etc/apache2/sites-available/default-ssl.conf
+
+sudo nano /etc/apache2/sites-available/default-ssl.conf
+
+Change
+
+        <VirtualHost _default_:443>
+                ServerAdmin webmaster@localhost
+
+                DocumentRoot /var/www/html
+to
+
+         <VirtualHost _default_:443>
+                ServerAdmin webmaster@localhost
+
+                DocumentRoot /var/www/https_sites/unified/public
+
+                <Directory "/var/www/https_sites/unified/public">
+                        AllowOverride All
+                </Directory>
+
+                <Location /guacamole/>
+                        Order allow,deny
+                        Allow from all
+                        ProxyPass http://localhost:8080/guacamole/ flushpackets=on
+                        ProxyPassReverse http://localhost:8080/guacamole/
+                </Location>
+
+// ---------------------------------------
+
+sudo a2ensite default-ssl.conf
+	(This prompts for an apache reload but all attemps fail)
+
+Setup Apache http redirect.
+
+In /etc/apache2/sites-available/000-default.conf
+Insert these three lines below <VirtualHost *:80>
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}	
+
+// ------------------------------------
+	
+cd
+curl -sS https://getcomposer.org/installer | php
+cd /usr/local/bin
+sudo cp ~/composer.phar composer
+
+sudo mkdir /home/c2-maintenance/sites
+sudo mkdir /home/c2-maintenance/sites/unified
+cd /home/c2-maintenance/sites/unified
+sudo svn co --username=____________ http://192.168.11.226/siteportal/branches/unified-sitegate .
+
+***sudo svn co --username=alexandria.codd http://192.168.11.226/siteportal/branches/unified-sitegate .
+
+
+rm composer.phar
+
+sudo composer install
+	(yes)
+Token: fc791a96333eac4bb10e6dbfe4a4bca2dd815d87  (from Ross's personal GitHub account)
+
+a2ensite default-ssl.conf *already enabled
+
+mysql -u root -p
+//Logged in to MySQL
+mysql> create database cswapi_unified;
+mysql> quit
+
+cd
+mysql -u root -p cswapi_unified < unified_template.sql 
+	***Ross needs to send this over to the machine - there will be a different file in the future that we need to use 
+	(enter DB password)
+
+sudo nano ~/sites/unified/.env
+edit database dc 
+DB_DATABASE=cswapi_unified
+QUEUE_DRIVER=beanstalkd
+
+sudo nano /etc/apache2/sites-available/default-ssl.conf
+
+*change the 'snakeoil' ones
+SSLCertificateFile		/etc/apache2/ssl/server.crt
+SSLCertificateKeyFile		/etc/apache2/ssl/server.key
+
+
+sudo a2enmod ssl 
+	*already enabled
+sudo a2enmod proxy 
+sudo a2enmod proxy_http
+sudo service apache2 restart
+
+cd /var/www
+sudo mkdir https_sites
+sudo chown www-data:www-data https_sites/
+cd https_sites
+sudo ln -s /home/c2-maintenance/sites/unified .
+
+cd ~/sites/unified
+sudo chmod -R 777 storage/
+cd bootstrap/ 
+sudo chmod -R 777 cache/
+ 
+CSWAPI_ROOT=/var/www/cswapi_unified
+
+// ------------------------------------------WE STOPPED HERE----------\\
+
+sudo adduser c2-guest
+password: e4MNW7Gl,7=u&13943;Q
+
+//Disable the login for the service account only
+sudo passwd -l c2-guest
+
+//Link Tomcat to Guacamole web app
+sudo ln -s /var/lib/guacamole/guacamole.war /var/lib/tomcat7/webapps
+
+//Link Guacamole properties configuration. Target location will vary depending on Guac/Tomcat/Distro combinations
+sudo ln -s /etc/guacamole/guacamole.properties /usr/share/tomcat7/lib/
+
+copy guacamole-auth-hmac-1.0-SNAPSHOT.jar to /var/lib/tomcat7/webapps/guacamole/WEB-INF/lib
+
+Tomcat can stay at port 8080.
+
+//Tomcat needs permission to read Gucamole user mapping file
+sudo gpasswd --add tomcat7 guacamole-web
+
+sudo service tomcat7 restart
+sudo service guacd restart
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+
+add to /etc/apache2/default-ssl.conf
+
+<Location /guacamole/>
+    Order allow,deny
+    Allow from all
+    ProxyPass http://localhost:8080/guacamole/ flushpackets=on
+    ProxyPassReverse http://localhost:8080/guacamole/
+</Location>
+
+sudo service apache2 restart
+
+cd ~/sites/unified
+php artisan jwt:generate
+
+cd /etc/guacamole/
+sudo cp ~/sites/unified/sys-files/etc/guacamole/guacamole.properties .
+
+nano guacamole.properties
+change secret-key: to key generated by php artisan jwt:generate above
+
+// --------------------------------------------------
+
+sudo -i -u c2-guest
+
+//This makes you c2-guest. Prompt should be:
+c2-guest@SiteGate:~$
+
+// This will promot for vnc password
+vncserver :1
+
+V3KNx#4t
+
+
+
+
+c2-guest@SiteGate:~$ more .vnc/xstartup
+#!/bin/sh
+
+# Uncomment the following two lines for normal desktop:
+# unset SESSION_MANAGER
+# exec /etc/X11/xinit/xinitrc
+
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+xsetroot -solid grey
+vncconfig -iconic &
+#x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+#x-window-manager &
+
+openbox-session & firefox --display=:1 &
+
+// --------------------------------------------------
+
+CSWAPI installation
+
+cd /var/www
+sudo mkdir cswapi_unified
+sudo chown c2-maintenance:www-data cswapi_unified/
+cd cswapi_unified/
+svn co --username=ross.keatinge http://192.168.11.226/siteportal/release-candidates/cswapi-7.2-RC1 .
+cd ..
+sudo chown -R c2-maintenance:www-data cswapi_unified/
+sudo chmod 2770 cswapi_unified/
+cd cswapi_unified/
+sudo find . -type d -exec chmod 2770 {} +
+sudo find . -type f -exec chmod 0640 {} +
+
+cd /home/c2-maintenance/sites/unified/public
+mkdir cswapi_unified
+cd `
+mkdir siteportal_device_api
+cd siteportal_device_api
+ln -s /var/www/cswapi_unified/siteportal_device_api/sitePortalLinkNode.php .
+
+// -----------------------------------------------------------
+
+Install in /etc/supervisor/conf.d
+beanstalk-worker.conf
+browser-listener.conf
+
+In Guacamole Firefox about:config
+set browser.link.open_newwindow  to 1

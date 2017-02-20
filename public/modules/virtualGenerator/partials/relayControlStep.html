@@ -1,0 +1,28 @@
+<div class="col-xs-12 form-section">
+    <h2 class="StepTitle">{!!virtualLocalization.rcConfiguration!!}</h2>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-5" for="relayControlList">{!!virtualLocalization.chooseRCConfig!!}</label>
+        <div class="col-xs-12 col-sm-6 col-md-7" form-validation-field="relayControl">
+          <select id="relayControl" name="relayControl" class="form-control" ng-model="formData.relayControlList" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.chooseRCConfigTT !!}">
+            <option ng-repeat="option in relayControlList" value="{!!option.id!!}" data-ng-selected="{!!option.selected!!}">{!!option.mainDevice!!} {!!option.subDevice!!}</option>
+          </select>
+        </div>
+    </div>
+    <div class="form-field-wizard-error" id="msg_relayControl">&nbsp</div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-5" for="deviceNameRC">{!!virtualLocalization.chooseName!!}</label>
+        <div class="col-xs-12 col-sm-6 col-md-7">
+          <input type="text" class="form-control" id="deviceNameRC" ng-model="deviceNameRC" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.chooseRCNameTT !!}" placeholder="{!!virtualLocalization.enterthe!!} {!!virtualLocalization.Name!!}">
+        </div>
+    </div>
+    <div class="form-field-wizard-error" id="msg_deviceNameRC">&nbsp</div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-5" for="normalState">{!!virtualLocalization.chooseRCOnState!!}</label>
+        <div class="col-xs-12 col-sm-6 col-md-7">
+          <select id="onState" name="onState" class="form-control" ng-model="onState" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.chooseRCOnStateTT !!}">
+            <option ng-repeat="option in onStateList" value="{!!option!!}" data-ng-selected="{!!option!!}">{!!option!!}</option>
+          </select>
+        </div>
+    </div>
+    <div class="form-field-wizard-error" id="msg_onState">&nbsp</div>
+</div>

@@ -1,0 +1,15 @@
+<div  ng-controller="formCtrl as form" data-url="/system/resetGuacamole" form-component>
+  <form class="form-horizontal" role="form" ng-controller="systemCtrl as system" reboot-dialog>
+    <div class="container-fluid">
+      <p>Are you sure you wish to reset the remote web interface?</p>
+      <div class="dialog-footer-buttons">
+        <div class="reboot-device-confirm-button" ng-click="submitForm('resetGuacamole')">
+          <img src="./img/icons/reboot.png"> Reset
+        </div>
+        <div class="close-reboot-window-button" ng-click="closeResetGuacamoleWindow()">
+          <img src="./img/icons/cancel.png"> Close
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

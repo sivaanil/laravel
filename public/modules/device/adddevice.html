@@ -1,0 +1,155 @@
+<div ng-submit="submitForm()"  ng-controller="formCtrl as form" data-url="/device" form-component>
+  <form class="form-horizontal" role="form" ng-controller="deviceCtrl as device" add-device-module ng-submit="device.submitForm()">
+      <div class="col-xs-12 col-md-7 form-column container-fluid">
+        <div class="col-xs-12 form-section">
+          <h5>{!!deviceLocalization.deviceinformation!!}</h5>
+          <input type="hidden" name="parentNodeId" ng-model="formData.parentNodeId">
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-5" for="primaryIpAddress">{!!deviceLocalization.primaryipaddress!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7" form-validation-field="primaryIpAddress">
+                <input type="text" class="form-control" ng-model="formData.primaryIpAddress" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.primaryipaddressTooltip !!}" id="primaryIpAddress" ng-model="formData.primaryIpAddress" placeholder="{!!deviceLocalization.enterthe!!} {!!deviceLocalization.primaryipaddress!!}">
+            </div>
+          </div>
+          <!--
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-5" for="enableSecondaryIp">{!!deviceLocalization.enablesecondaryip!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7" form-validation-field="enableSecondaryIp">
+              <input type="checkbox" id="enableSecondaryIp" ng-model="formData.enableSecondaryIp">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-5" for="secondaryIpAddress">{!!deviceLocalization.secondaryipaddress!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7" form-validation-field="secondaryIpAddress">
+              <input type="text" class="form-control" id="secondaryIpAddress" ng-model="formData.secondaryIpAddress" ng-disabled="!formData.enableSecondaryIp" placeholder="{!!deviceLocalization.enterthe!!} {!!deviceLocalization.secondaryipaddress!!}">
+            </div>
+          </div>
+          !-->
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-5" for="webUsername">{!!deviceLocalization.webuiusername!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7" form-validation-field="webUsername">
+                <input type="text" class="form-control" id="webUsername" ng-model="formData.webUsername" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.webuiusernameTooltip !!}" placeholder="{!!deviceLocalization.enterthe!!} {!!deviceLocalization.webuiusername!!}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-5" for="webPassword">{!!deviceLocalization.webuipassword!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7" form-validation-field="webPassword">
+              <input type="text" class="form-control" id="webPassword" ng-model="formData.webPassword" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.webuipasswordTooltip !!}" placeholder="{!!deviceLocalization.enterthe!!} {!!deviceLocalization.webuipassword!!}">
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 form-section" ng-show="formData.uses_snmp != 0">
+          <h5>{!!deviceLocalization.snmpsettings!!}</h5>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-5" for="snmpVer">{!!deviceLocalization.snmpversion!!}:</label>
+            <div class="col-xs-3 col-sm-3" form-validation-field="snmpVer">
+              <select id="snmpVer" class="form-control" ng-model="formData.snmpVer" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.snmpversionTooltip !!}">
+                <option ng-repeat="option in snmpVers" value="{!!option!!}" data-ng-selected="option">{!!option!!}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer != '3'">
+            <label class="control-label col-xs-12 col-sm-5" for="snmpRead">{!!deviceLocalization.readstring!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-5" form-validation-field="snmpRead">
+              <input type="text" class="form-control" id="snmpRead" ng-model="formData.snmpRead" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.readstringTooltip !!}">
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer != '3'">
+            <label class="control-label col-xs-12 col-sm-5" for="snmpWrite">{!!deviceLocalization.writestring!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-5" form-validation-field="snmpWrite">
+              <input type="text" class="form-control" id="snmpWrite" ng-model="formData.snmpWrite" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.writestringTooltip !!}">
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer == '3'">
+            <label class="control-label col-xs-12 col-sm-5" for="snmpAuthType">{!!deviceLocalization.securitytype!!}:</label>
+            <div class="col-xs-4 col-sm-3" form-validation-field="snmpAuthType">
+              <select id="snmpAuthType" class="form-control" ng-model="formData.snmpAuthType" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.securitytypeTooltip !!}">
+                <option ng-repeat="option in snmpAuthTypeOptions" value="{!!option!!}" data-ng-selected="{!!option!!}">{!!option!!}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer == '3' && (formData.snmpAuthType == 'authNoPriv' || formData.snmpAuthType == 'authPriv')">
+            <label class="control-label col-xs-12 col-sm-5" for="snmpUserName">{!!deviceLocalization.snmpusername!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-5" form-validation-field="snmpUserName" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.snmpusernameTooltip !!}">
+              <input type="text" class="form-control" id="snmpUserName" ng-model="formData.snmpUserName">
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer == '3' && (formData.snmpAuthType == 'authNoPriv' || formData.snmpAuthType == 'authPriv')">
+            <label class="control-label col-xs-12 col-sm-5" for="snmpAuthEncryption">{!!deviceLocalization.authencryption!!}:</label>
+            <div class="col-xs-4 col-sm-3" form-validation-field="snmpAuthEncryption">
+              <select id="snmpAuthEncryption" class="form-control" ng-model="formData.snmpAuthEncryption" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.authencryptionTooltip !!}">
+                <option ng-repeat="option in snmpAuthEncryptionOptions" value="{!!option!!}" data-ng-selected="{!!option!!}">{!!option!!}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer == '3' && (formData.snmpAuthType == 'authNoPriv' || formData.snmpAuthType == 'authPriv')">
+            <label class="control-label col-xs-12 col-sm-5" for="snmpAuthPassword">{!!deviceLocalization.authpassword!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-5" form-validation-field="snmpAuthPassword">
+              <input type="text" class="form-control" id="snmpAuthPassword" ng-model="formData.snmpAuthPassword" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.authpasswordTooltip !!}">
+            </div>
+          </div>
+
+        <div class="form-group" ng-show="formData.snmpVer == '3' && formData.snmpAuthType == 'authPriv'">
+          <label class="control-label col-xs-12 col-sm-5" for="snmpPrivacyEncryption">{!!deviceLocalization.privacyencryption!!}:</label>
+          <div class="col-xs-4 col-sm-3" form-validation-field="snmpPrivacyEncryption">
+            <select id="snmpPrivacyEncryption" class="form-control" ng-model="formData.snmpPrivacyEncryption" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.privacyencryptionTooltip !!}">
+              <option ng-repeat="option in snmpPrivacyEncryptionOptions" value="{!!option!!}" data-ng-selected="{!!option!!}">{!!option!!}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" ng-show="formData.snmpVer == '3' && formData.snmpAuthType == 'authPriv'">
+          <label class="control-label col-xs-12 col-sm-5" for="snmpPrivacyPassword">{!!deviceLocalization.privacypassword!!}:</label>
+          <div class="col-xs-12 col-sm-6 col-md-5" form-validation-field="snmpPrivacyPassword">
+            <input type="text" class="form-control" id="snmpPrivacyPassword" ng-model="formData.snmpPrivacyPassword" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.privacypasswordTooltip !!}">
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="col-xs-12 col-md-5 form-column container-fluid">
+        <div class="col-xs-12 form-section">
+          <h5>{!!deviceLocalization.portforwardsettings!!}</h5>
+          <table class="table table-striped">
+            <tr>
+              <th>{!!deviceLocalization.service!!}</th>
+              <th>{!!deviceLocalization.modemport!!}--></th>
+              <th>{!!deviceLocalization.deviceport!!}</th>
+            </tr>
+            <tr ng-repeat="devicePort in formData.devicePorts">
+              <td>{!!devicePort.name!!}</td>
+              <td>
+                <div style="width: 70px;"><input type="text" name="devicePort_{!!devicePort.id!!}" class="form-control" ng-model="devicePort.port" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.modemPortTooltip !!}{!!devicePort.name!!}" class="form-control"></div></td>
+              <td>{!!devicePort.default_port!!}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="col-xs-12 form-section">
+          <div class="col-xs-9" style="padding-left: 0px;">
+            <h5>{!!deviceLocalization.pollingsettings!!}</h5>
+          </div>
+          <div class="col-xs-3">
+            <div style="padding-top: 7px;">
+              <img src="./img/icons/help.png"><a href="#"> {!!deviceLocalization.help!!}</a>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-7" for="scanInterval">{!!deviceLocalization.scaninterval!!}:</label>
+            <div class="col-xs-4 col-md-3" form-validation-field="scanInterval">
+                <input type="text" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.scanintervalTooltip !!}" class="form-control" id="scanInterval" ng-model="formData.scanInterval">
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="dialog-footer-buttons">
+      <div ng-click="submitForm()" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.createdeviceTooltip !!}">
+        <img  src="./img/icons/disk.png" class="btn-submit"> {!!deviceLocalization.createdevice!!}
+      </div>
+      <div style="display: none;">
+        <img  src="./img/icons/disk.png"> {!!deviceLocalization.queuedevice!!}
+      </div>
+      <div ng-click="closeBuildDeviceWindow()" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.cancelCreatedeviceTooltip !!}">
+        <img src="./img/icons/cancel.png"> {!!deviceLocalization.cancel!!}
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,112 @@
+Update existing SiteGates to 2.2.
+
+======= IMPORTANT =====================================================================================================
+We must avoid sending unnecessary notifications to customers.
+If we take the SiteGate offline, this will created offline alarms so disable notifications for the SiteGate in SitePortal.
+
+If we rebuild the SiteGate in SitePortal, this will raise notification for all past alarms so it is important to disable notifications for the folder in which the SiteGate will be built.
+=======================================================================================================================
+
+SSH to the SiteGate as c2-maintenance
+
+Disable scanning:
+mysql -u root -p cswapi_unified -e "UPDATE css_general_config SET var1 = 0 WHERE setting_name = 'enable_scan'"
+
+Wait for scanning to end. This might take a while.
+Run this to see if anything is still scanning.
+
+ps -ef | grep "networking/scanners"
+
+When scanning has ended.
+
+cd ~
+mkdir upgrade22
+
+/Check which version fo cswapi we have
+cd /var/www/cswapi_unified
+svn info
+
+Note the end of the URL line on the svn info response.  If it is already cswapi-sitegate-7.2-RC4-ENC then we don't need to copy the cswapi tarball or upgrade cswapi.
+
+We have three tarballs on Frylock
+
+/home/ross/sitegate-22/sitegate-2.2.0.0-RELEASE-ENCODED.tar.gz
+/home/ross/sitegate-22/cswapi-sitegate-7.2-RC4-ENC.tar.gz
+/home/ross/sitegate-22/listener.tar.gz
+
+The files need to be copied to the SiteGate in the upgrade22 directory we created above. For some (Forza) this can be a direct scp from Frylock. For the VZW SiteGates, they'll need to be copied via thumbdrive or whatever to a VZW terminal. WinSCP can then be used from there to copy to the SiteGate. If the SiteGate is on IPv6 then the files need to be copied to an IPv6 capable server and then scp to the SiteGate.
+
+General scp command:
+scp /path-to-tarballs/*.gz c2-maintenance@x.x.x.x:/home/c2-maintenance/upgrade22
+or just the SiteGate one
+scp /path-to-tarballs/sitegate*.gz c2-maintenance@x.x.x.x:/home/c2-maintenance/upgrade22
+
+x.x.x.x is the address of the SiteGate.
+
+To upgrade Unified on the SiteGate.
+cd ~/upgrade22
+
+sudo service apache2 stop
+
+cd ~/sites
+mv unified unified-save
+tar xzpf ~/upgrade22/sitegate-2.2.0.0-RELEASE-ENCODED.tar.gz
+mv sitegate-2.2.0.0-RELEASE-ENCODED/ unified
+
+// ----- CSWAPI update --------------------------------
+
+If cswapi is not already cswapi-sitegate-7.2-RC4-ENC 
+
+cd /var/www
+sudo mv cswapi_unified/ cswapi_unified-save
+sudo tar xzpf ~/upgrade22/cswapi-sitegate-7.2-RC4-ENC.tar.gz
+sudo mv cswapi-sitegate-7.2-RC4-ENC/ cswapi_unified
+
+// ----------------------------------------------------
+
+cd ~/sites/unified/sys-files/
+chmod +x *.sh
+sudo ./set-permissions.sh
+sudo cp c2-guest-home.tar.gz /root
+
+cd ~/sites/unified/app/System/
+sudo ./build-wrapper.sh
+("cannot create directory" is okay)
+
+cd ~/sites/unified
+sudo php artisan csquared:resetguest
+("no process found" is okay)
+
+sudo cp ~/sites/unified/sys-files/etc/supervisor/conf.d/beanstalk-worker.conf /etc/supervisor/conf.d/
+
+sudo supervisorctl stop browser-listener
+cd /var/csquared
+sudo mv listener listener-save
+sudo tar xzpf ~/upgrade22/listener.tar.gz
+sudo chown -R c2-maintenance:c2-maintenance listener/
+sudo supervisorctl start browser-listener
+
+sudo apt-get install xterm
+(maybe already installed)
+
+// edit ~/sites/unified/.env and set timezone.
+nano ~/sites/unified/.env
+// edit the TIMEZONE line. TIMEZONE must remain upper case.
+
+Use one of these for US.
+
+America/New_York
+America/Chicago
+America/Denver
+America/Los_Angeles
+
+// check timezone
+sudo dpkg-reconfigure tzdata
+
+mysql -u root -p cswapi_unified -e "UPDATE css_networking_device SET last_scan = '2000-01-01 00:00:00', last_alarms_scan = '2000-01-01 00:00:00' WHERE id = 1"
+mysql -u root -p cswapi_unified -e "UPDATE css_general_config SET var1 = 1 WHERE setting_name = 'enable_scan'"
+
+sudo service supervisor stop
+sudo service supervisor start
+
+sudo service apache2 start

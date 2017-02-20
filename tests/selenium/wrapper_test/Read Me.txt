@@ -1,0 +1,1 @@
+Fix switching_between_canvases_test to include the loading symbol/new feature (Bug 5937)

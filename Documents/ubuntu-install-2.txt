@@ -1,0 +1,229 @@
+(API api / !mrM1_hH*zPZ)
+
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo apt-get install --yes apache2
+sudo apt-get install --yes php5 libapache2-mod-php5
+sudo apt-get install --yes php5-mysql
+sudo apt-get install --yes php-pear
+sudo apt-get install --yes php5-curl
+sudo apt-get install --yes php5-mcrypt
+sudo apt-get install --yes php5-imap
+sudo apt-get install --yes mysql-server
+sudo apt-get install --yes bridge-utils
+sudo apt-get install --yes htop
+sudo apt-get install --yes vim
+sudo apt-get install --yes rrdtool
+sudo apt-get install --yes snmp
+sudo apt-get install --yes ethtool
+sudo apt-get install --yes iperf
+sudo apt-get install --yes subversion
+sudo apt-get install --yes expect
+sudo apt-get install --yes tmux
+sudo apt-get install --yes fping
+sudo apt-get install --yes curl
+sudo apt-get install --yes git
+sudo apt-get install --yes php5-dev
+sudo apt-get install --yes beanstalkd
+sudo apt-get install --yes openbox
+sudo apt-get install --yes guacamole
+sudo apt-get install --yes dbus-x11
+sudo apt-get install --yes firefox
+sudo apt-get install --yes libcurl4-gnutls-dev
+sudo apt-get install --yes supervisor
+sudo apt-get install --yes tomcat7
+sudo apt-get install --yes at
+sudo apt-get install --yes snmpd
+
+sudo pecl install pecl_http-1.7.6
+	(answer all defaults)
+	
+sudo pear install net_ping auth_sasl mail net_smtp mail_mime
+
+sudo a2enmod ssl
+sudo a2enmod rewrite
+sudo a2enmod proxy
+sudo a2enmod http_proxy
+sudo php5enmod mcrypt
+sudo service apache2 restart
+
+// --- install unified -------------
+
+cd
+mkdir sites
+cd sites
+
+svn co --username=____________ http://192.168.11.226/siteportal/branches/unified-sitegate unified
+(prompts for password)
+
+// --- set file permissions -----------
+
+sudo chown -R c2-maintenance:www-data unified
+sudo chmod 2750 unified
+cd unified
+sudo find . -type d -exec chmod 2750 {} +
+sudo find . -type f -exec chmod 0640 {} +
+
+sudo chmod -R 777 storage
+sudo chmod -R 777 bootstrap/cache
+
+// --- edit php.ini ---------------------
+
+sudo nano /etc/php5/cli/php.ini
+
+max_execution_time = 300
+memory_limit = -1	
+include_path = ".:/usr/share/php:/var/www:/usr/share/php:/usr/share/php/Net"
+extension=http.so	
+upload_max_filesize = 1024M
+post_max_size = 1024M
+
+sudo nano /etc/php5/apache2/php.ini
+
+max_execution_time = 300
+memory_limit = -1
+include_path = ".:/usr/share/php:/var/www:/usr/share/php:/usr/share/php/Net"
+extension=http.so	
+upload_max_filesize = 1024M
+post_max_size = 1024M
+
+// --- SSL cert ---------------------
+
+cd /etc/apache2
+sudo mkdir ssl
+cd ssl
+// --days sets expiry date
+sudo openssl req -new -x509 -nodes -days 3650 -out server.crt -keyout server.key
+Country: US
+Organization Name: C Squared Systems L.L.C.
+Common Name: SiteGate
+
+// --- setup apache ---------
+cd /etc/apache2/sites-available/
+sudo cp ~/sites/unified/sys-files/etc/apache2/sites-available/*.conf .
+
+// --- composer ----
+
+curl -sS https://getcomposer.org/installer | php
+cd /usr/local/bin
+sudo cp ~/composer.phar composer
+
+cd ~/sites/unified/
+
+rm composer.phar
+composer update
+
+// --- Laravel ----
+
+sudo nano ~/sites/unified/.env
+DB_DATABASE=cswapi_unified
+QUEUE_DRIVER=beanstalkd
+
+// --- MySQL ---
+
+//MySQL needs a root user accessible from anywhere.  i.e. root %
+// This is okay so long as we block port 3306
+// It needs this because some functions and procedures use it as their "creator".
+
+mysql -u root -p -e"create database cswapi_unified;"
+mysql -u root -p cswapi_unified < template_7_2_RC3_sitegate.sql
+
+cd ~/sites/unified
+php artisan migrate
+
+// --- c2-guest user ----
+
+sudo adduser c2-guest
+  password: e4MNW7Gl,7=u&13943;Q
+  leave other fields blank
+
+sudo passwd -l c2-guest
+
+cd /var
+sudo mkdir csquared
+cd csquared
+sudo mkdir listener
+sudo chown c2-maintenance:c2-maintenance listener/
+
+cd listener
+svn co --username=________ http://192.168.11.226/siteportal/branches/sitegate-listener .
+
+// --- VNC ----
+
+sudo -i -u c2-guest
+
+// start VNC fior first time to create files
+
+vncserver :1
+Prompted for vnc password
+V3KNx#4t
+
+nano .vnc/xstartup
+Contents should be
+
+#!/bin/sh
+
+# Uncomment the following two lines for normal desktop:
+# unset SESSION_MANAGER
+# exec /etc/X11/xinit/xinitrc
+
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+xsetroot -solid grey
+vncconfig -iconic &
+#x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+#x-window-manager &
+
+openbox-session & firefox --display=:1 &
+
+// end of file
+
+exit
+
+// back as c2-maintenance
+
+cd /etc/guacamole
+sudo cp ~/sites/unified/sys-files/etc/guacamole/guacamole.properties .
+
+cd ~/sites/unified
+
+php artisan jwt:generate
+Copy and paste the generated key into /etc/guacamole/
+
+// Guacamole
+sudo cp ~/sites/unified/sys-files/var/lib/tomcat7/webapps/guacamole/WEB-INF/lib/guacamole-auth-hmac-1.0-SNAPSHOT.jar /var/lib/tomcat7/webapps/guacamole/WEB-INF/lib/
+sudo chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/guacamole/WEB-INF/lib/guacamole-auth-hmac-1.0-SNAPSHOT.jar
+
+sudo cp ~/sites/unified/sys-files/etc/supervisor/supervisord.conf /etc/supervisor/
+sudo cp ~/sites/unified/sys-files/etc/supervisor/conf.d/*.conf /etc/supervisor/conf.d/
+
+sudo reboot
+
+After reboot, login and hit "Launch Web Interface". You should see Firefox.
+
+In Firefox go to about:config
+set browser.link.open_newwindow to 1
+
+// ---- system wrapper ------------
+
+cd ~/sites/unified/app/System/
+chmod +x reset-guest.sh
+chmod +x build-wrapper.sh
+./build-wrapper.sh
+
+// network setup
+
+sudo cp ~/sites/unified/sys-files/etc/network/interfaces.d/*.conf /etc/network/interfaces.d/
+sudo cp ~/sites/unified/sys-files/etc/network/interfaces /etc/network
+
+sudo nano /etc/network/interfaces.d/wan.conf
+(edit ip address to what you want. Default id 192.168.11.26)
+
+sudo reboot
+
+// --- ioncube ----
+// ---- ssh -----
+In /etc/ssh/sshd_config ... add
+UseDNS no
+

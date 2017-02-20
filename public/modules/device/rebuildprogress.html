@@ -1,0 +1,16 @@
+<div ng-submit="submitForm()"  ng-controller="formCtrl as form" data-url="/device" form-component>
+  <form class="form-horizontal" role="form" ng-controller="deviceCtrl as device" device-module>
+    <div class="container-fluid">
+      <h3 class="rebuild-device-message" style="font-size: 18px">Rebuilding...</h3>
+      <div class="rebuild-progress-spinner" style="width: 100%; text-align: center; padding-top: 10px;">
+        <img src="../img/icons/loading.gif">
+      </div>
+      <div class="dialog-footer-buttons">
+        <div class="close-rebuild-device-button" ng-click="closeRebuildProgressWindow()" style="display: none;">
+          <img src="./img/icons/cancel.png"> Close
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>

@@ -1,0 +1,49 @@
+<div class="title-bar">
+    <h4>LAN Settings</h4>
+</div>
+<div ng-app="form" ng-controller="formCtrl" data-url="/LANSetting" form-component>
+  <div form-messages class="col-xs-offset-1 col-xs-11">
+  </div>
+  <div class="container-fluid" style="padding-left: 0px;">
+    <form class="form-horizontal custom-ng-form" id="lanSettingsForm" role="form" ng-controller="networkCtrl as network" lan-settings>
+      <div class="col-xs-12 col-md-6 form-section">
+      <h5>LAN Port Settings (Device Ports)</h5>
+      <div class="form-group">
+        <label class="control-label col-xs-6 col-sm-5" for="ipAddress">{!! networkLocalization.LANipAddress !!}:</label>
+        <div class="col-xs-12 col-sm-6" form-validation-field="ipAddress">
+          <input type="text" class="form-control" id="ipAddress" ng-model="formData.ipAddress" data-toggle="tooltip" data-placement="top"  title="{!! networkLocalization.LANipAddressTooltip !!}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-xs-6 col-sm-5" for="netmask">{!! networkLocalization.LANnetmask !!}:</label>
+        <div class="col-xs-12 col-sm-6" form-validation-field="netmask">
+          <input type="text" class="form-control" id="netmask" ng-model="formData.netmask" data-toggle="tooltip" data-placement="top"  title="{!! networkLocalization.LANnetmaskTooltip !!}">
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6 form-section">
+      <h5>MGMT Port Settings (Management Port)</h5>
+      <div class="form-group">
+        <label class="control-label col-xs-6 col-sm-5" for="consoleIpAddress">{!! networkLocalization.LANconsoleIpAddress !!}:</label>
+        <div class="col-xs-12 col-sm-6" form-validation-field="consoleIpAddress">
+          <input type="text" class="form-control" id="consoleIpAddress" ng-model="formData.consoleIpAddress" data-toggle="tooltip" data-placement="top"  title="{!! networkLocalization.LANconsoleIpAddressTooltip !!}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-xs-6 col-sm-5" for="consoleNetmask">{!! networkLocalization.LANconsoleNetmask !!}:</label>
+        <div class="col-xs-12 col-sm-6" form-validation-field="consoleNetmask">
+          <input type="text" class="form-control" id="consoleNetmask" ng-model="formData.consoleNetmask" data-toggle="tooltip" data-placement="top"  title="{!! networkLocalization.LANconsoleNetmaskTooltip !!}">
+        </div>
+      </div>
+    </div>
+      <div class="col-xs-12 col-md-6 buttons-right-aligned">
+      <div class="form-group">
+        <div>
+          <button type="submit" class="btn btn-default btn-submit btn-save" ng-click="submitForm()" data-toggle="tooltip" data-placement="top"  title="{!! networkLocalization.LANsettingsSaveTooltip !!}">Save</button>
+          <button class="btn btn-default btn-cancel"  ng-click="loadFormData()" data-toggle="tooltip" data-placement="top"  title="{!! networkLocalization.LANsettingsCancelTooltip !!}">Cancel</button>
+        </div>
+      </div>
+      </div>
+  </form>
+    </div>
+</div>

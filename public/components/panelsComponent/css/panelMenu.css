@@ -1,0 +1,163 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 9, 2014, 10:02:22 AM
+    Author     : Golnaz.Rouhi
+*/
+
+.panelButtonGroup {
+    display: inline-block;
+    text-align: center;
+    margin-top: 5px;
+    margin-right: 8px;
+}
+
+.panelButton {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-color: #0C59AF;
+    cursor: pointer;
+    width: 40px;
+    height: 20px;
+    background-color: #0C59AF;
+}
+
+.alarms {
+
+    background-image: url("/img/icons/c2_icon_alarms.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.device-information {
+
+    background-image: url("/img/icons/c2_icon_device_information.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.location-and-accessInfo {
+
+    background-image: url("/img/icons/c2_icon_location_and_access_info.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.notifications {
+
+    background-image: url("/img/icons/c2_icon_notifications.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.log {
+
+    background-image: url("/img/icons/c2_icon_log.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.custom-fields {
+
+    background-color: #0C59AF;
+    background-image: url("/img/icons/c2_icon_custom_fields.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.donor-site {
+
+    background-image: url("/img/icons/c2_icon_donor_sites.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.rets {
+
+    background-image: url("/img/icons/c2_icon_rets.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.generator-summary {
+
+    background-image: url("/img/icons/c2_icon_generator.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.power-plant-summary {
+
+    background-image: url("/img/icons/c2_icon_power_plant.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.sensor-devices {
+
+    background-image: url("/img/icons/c2_icon_sensor_devices.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.cell-site-summary {
+
+    background-image: url("/img/icons/c2_icon_graph.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.camera {
+
+    background-image: url("/img/icons/c2_icon_camera.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.properties {
+
+    background-image: url("/img/icons/c2_icon_properties.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.statuses {
+
+    background-image: url("/img/icons/c2_icon_statuses.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.property-history {
+
+    background-image: url("/img/icons/c2_icon_property_history.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.graph {
+
+    background-image: url("/img/icons/c2_icon_graph.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.map {
+
+    background-image: url("/img/icons/c2_icon_map.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.documents-and-files {
+
+    background-image: url("/img/icons/c2_icon_files.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+

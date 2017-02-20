@@ -1,0 +1,32 @@
+#snmpDialogContent div.row > label {
+    width: 150px;
+    margin-left: 15px;
+}
+
+#snmpDialog div.buttons {
+   float: right;
+}
+
+#snmpDialogFooter .button {
+    padding: 5px 5px 5px 5px;
+}
+
+#snmpDialogFooter div.buttons > .button:hover {
+    background: #b2e1ff ! important;
+    color: #2b333c;
+    cursor: pointer;
+
+}
+
+.toolbarButton {
+}
+
+.toolbarButton:hover {
+    background: #b2e1ff ! important;
+    color: #2b333c;
+    cursor: pointer;
+}
+
+.cellimage {
+    padding-left:3px;
+}

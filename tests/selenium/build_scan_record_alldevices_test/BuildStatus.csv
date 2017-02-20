@@ -1,0 +1,64 @@
+Device Type,Build
+ADC Fusion,Successfully Built
+ADC Network Interface Unit,Failure to Build
+ADC Spectrum,Successfully Built
+ADRF 25K,Successfully Built
+ADRF 25K_S1,Successfully Built
+ADRF ADX,Failure to Build
+ADRF AEON 8024,Successfully Built
+ADRF Aeon 9030,Failure to Build
+ADRF AXM ICS 700,Failure to Build
+ADRF AXM2100,UnBuilt
+ADRF AXM700,UnBuilt
+ADRF EPOCH HC,UnBuilt
+ADRF EPOCH HP,UnBuilt
+ADRF Epoch III,UnBuilt
+ADRF Epoch M1C,UnBuilt
+ADRF Epoch M1P,UnBuilt
+ADRF Epoch S02,UnBuilt
+ADRF SDR,UnBuilt
+Andrew AMR,UnBuilt
+Andrew ION M,UnBuilt
+Andrew Ion U,UnBuilt
+Andrew MR,UnBuilt
+Andrew Node A,UnBuilt
+Andrew Node C,UnBuilt
+Andrew TSUN4,UnBuilt
+Assentria SiteBoss 350,UnBuilt
+Assentria SiteBoss 550,UnBuilt
+Axell DMBR,UnBuilt
+Axell MINI,UnBuilt
+CradlePoint IBR/PHS,UnBuilt
+CradlePoint IBR600,UnBuilt
+CradlePoint IBR650E,UnBuilt
+CSI CSI-DSP85,UnBuilt
+CSI CSI-DSP85-251,UnBuilt
+CSI CSI-LTE,UnBuilt
+CSI UDIT,UnBuilt
+Digi ConnectPort WAN VPN,UnBuilt
+Digi Transport,UnBuilt
+Emerson ACU+,UnBuilt
+GE Infinity NE,UnBuilt
+GST LTE/CoverCell 25KN Repeater,UnBuilt
+GST SmartCell Repeater,UnBuilt
+Juni JR-10/20,UnBuilt
+MobileAccess SC450,UnBuilt
+MultiTech Modem,UnBuilt
+netBooter,UnBuilt
+RFC 1213 Device,UnBuilt
+Sierra LS 300,UnBuilt
+Sierra PinPoint X EV-DO,UnBuilt
+Sierra Raven E EVDO,UnBuilt
+Sierra Raven GX 440,UnBuilt
+Sierra Raven X EVDO,UnBuilt
+Sierra Raven XE EV-DO,UnBuilt
+Sierra Raven XT EVDO,UnBuilt
+SimpleComTools XML1000,UnBuilt
+Solid DMS600,UnBuilt
+Solid DMS1200,UnBuilt
+Spotwave Management Unit,UnBuilt
+Sym SmartModem -UWM505,UnBuilt
+TEKO iSpectrum,UnBuilt
+TEKO TSPV,UnBuilt
+Westell RMX3200,UnBuilt
+Zinwave Primary Hub,UnBuilt

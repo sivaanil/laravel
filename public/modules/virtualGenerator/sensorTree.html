@@ -1,0 +1,14 @@
+<div ng-submit="submitForm()"  ng-controller="formCtrl as form" data-url="/virtualGenerator" form-component>
+    <form class="form-horizontal" role="form" ng-controller="sensorTreeCtrl as sensorTree" sensor-tree>
+        <div id="sensorTree"></div>
+        <div class="dialog-footer-buttons">
+            <div ng-click="onSensorSubmit()" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.submitSensorTT !!}">
+                <img  src="./img/icons/disk.png" class="btn-submit"> {!!virtualLocalization.submit!!}
+            </div>
+            <div ng-click="onSensorCancel()" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.cancelSensorTT !!}">
+                <img src="./img/icons/cancel.png"> {!!virtualLocalization.cancel!!}
+            </div>
+        </div>
+    </form>
+</div>
+

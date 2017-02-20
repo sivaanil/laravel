@@ -1,0 +1,77 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+var gridLocalization =
+{
+    firstDay: 0,
+    days: {
+        names: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        namesAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        namesShort: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+    },
+    months: {
+        names: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ""],
+        namesAbbr: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ""]
+    },
+    AM: ["AM", "am", "AM"],
+    PM: ["PM", "pm", "PM"],
+    eras: [{name: "A.D.", start: null, offset: 0}],
+    twoDigitYearMax: 2029,
+    percentsymbol: "%",
+    currencysymbol: "$",
+    currencysymbolposition: "before",
+    decimalseparator: ".",
+    thousandsseparator: ",",
+    pagergotopagestring: "Page:",
+    pagershowrowsstring: "Rows per Page:",
+    pagerrangestring: " of ",
+    pagerpreviousbuttonstring: "previous",
+    pagernextbuttonstring: "next",
+    pagerfirstbuttonstring: "first",
+    pagerlastbuttonstring: "last",
+    groupsheaderstring: "Drag a column and drop it here to group by that column",
+    sortascendingstring: "Sort Ascending",
+    sortdescendingstring: "Sort Descending",
+    sortremovestring: "Remove Sort",
+    groupbystring: "Group By this column",
+    groupremovestring: "Remove from groups",
+    filterclearstring: "Clear",
+    filterstring: "Filter",
+    filtershowrowstring: "Show rows where:",
+    filtershowrowdatestring: "Show rows where date:",
+    filterorconditionstring: "Or",
+    filterandconditionstring: "And",
+    filterselectallstring: "(Select All)",
+    filterchoosestring: "Please Choose:",
+    filterstringcomparisonoperators: ['equal', 'does not contain', 'contains'],
+    filternumericcomparisonoperators: ['less than', 'less than or equal to', 'greater than', 'greater than or equal to', 'contains', 'equal'],
+    filterdatecomparisonoperators: ['not set', 'less than', 'greater than'],
+    filterbooleancomparisonoperators: ['equal', 'not equal'],
+    validationstring: "Entered value is not valid",
+    emptydatastring: "No data to display",
+    filterselectstring: "Select Filter",
+    loadtext: "Loading...",
+    clearstring: "Clear",
+    todaystring: "Today",
+    checkboxDropdownPlaceHolder: "Select Columns",
+    autoResizeCB: "Auto Resize",
+    autoResizeCBToolTip: "On load and page resize the grid will automatically fit your screen",
+    excelExportButton: "Excel Export",
+    excelExportButtonTooltip: "Export This Grid View to Excel",
+    resetColumnsButton: "Reset Columns",
+    resetColumnsButtonTooltip: "Reset Column Order and Widths to Default",
+    selectColumnsButton: "Select Columns",
+    selectColumnsButtonTooltip: "Select Grid Columns for Display",
+    selectColumnsWindowHeader: "Select Columns for Display",
+    availableColumns: "Available Columns",
+    selectedColumns: "Displayed Columns",
+    displayColumnToolTip: "Add selected column to display",
+    hideColumnToolTip: "Hide selected column from display",
+    reorderColumnUpToolTip: "Reorder column up",
+    reorderColumnDownToolTip: "Reorder column down",
+    increaseColumnSizeToolTip: "Increase column width",
+    decreaseColumnSizeToolTip: "Decrease column width"
+};

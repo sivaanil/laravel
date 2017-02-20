@@ -1,0 +1,51 @@
+.form-error {
+    color: red;
+    font-weight: bold;
+    border: 1px solid red;
+    padding: 15px 15px 15px 15px;
+    margin-bottom: 15px;
+}
+.form-success {
+    color: green;
+    font-weight: bold;
+    border: 1px solid green;
+    padding: 15px 15px 15px 15px;
+    margin-bottom: 15px;
+}
+.form-field-error {
+    color: red;
+    font-weight: bold;
+}
+
+.form-field-wizard-error {
+    color: red;
+    font-weight: bold;
+    position: relative;
+    left: 50%;
+    line-height: 1.5;
+}
+
+.form-section {
+    border: 2px solid #0c59af;
+    border-radius: 10px;
+    margin: 10px 10px 10px 10px;
+}
+.form-section h5 {
+    color: #0c59af;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.wizard-form-section {
+    border: 2px solid #0c59af;
+    border-radius: 10px;
+    margin: 20px 10px 10px 10px;
+}
+
+.form-column {
+    min-width: 300px !important;
+}
+
+.save-button {
+
+}

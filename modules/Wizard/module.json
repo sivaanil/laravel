@@ -1,0 +1,15 @@
+{
+    "name": "Wizard",
+    "alias": "wizard",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Wizard\\Providers\\WizardServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}

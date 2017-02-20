@@ -1,0 +1,17 @@
+<div ng-submit="submitForm()"  ng-controller="formCtrl as form" data-url="/device" form-component>
+  <form class="form-horizontal" role="form" ng-controller="deviceCtrl as device" device-module>
+    <div class="container-fluid">
+      <h3 class="build-device-message" style="font-size: 18px">Starting build...</h3>
+      <div build-progress></div>
+      <div class="dialog-footer-buttons">
+        <div class="cancel-build-device-button" ng-click="cancelBuild()">
+          <img src="./img/icons/cancel.png"> Cancel Build
+        </div>
+        <div class="close-build-device-button" ng-click="closeBuildProgressWindow()" style="display: none;">
+          <img src="./img/icons/cancel.png"> Close
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>

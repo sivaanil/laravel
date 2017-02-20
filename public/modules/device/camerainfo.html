@@ -1,0 +1,26 @@
+<div ng-submit="submitForm()"  ng-controller="formCtrl as form" ng-submit="submitForm()" form-component>
+  <form class="form-horizontal" role="form" ng-controller="deviceCtrl as device" device-info class="device-info-form" style="font-size: 12px;">
+    <div class="title-bar">
+      <h4 title="NID:{!!rootScope.$nodeId!!}/DID:{!!formData.id!!}">Camera Events</h4>
+    </div>
+    <div>
+      <table class="table table-striped" style="font-size: 11px;">
+        <tr>
+          <th>Event Name</th>
+          <th>Time</th>
+          <th>Duration</th>
+          <th>Notes</th>
+        </tr>
+        <tr ng-repeat="event in formData.events">
+          <td>{!!event.Event.Name!!}</td>
+          <td>{!!mainService.legibleDate(event.Event.StartTime)!!}</td>
+          <td>{!!event.Event.Length!!} sec</td>
+          <td>{!!event.Event.Notes!!}</td>
+          <td><a href="/zm/index.php?view=event&eid={!!event.Event.Id!!}&trms=1&attr1=MonitorId&op1=%3d&val1=11&page=1" target="_blank">View</a></td>
+          <td><a href="/zm/index.php?view=video&eid={!!event.Event.Id!!}" target="_blank">Download</a></td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</div>
+</div>

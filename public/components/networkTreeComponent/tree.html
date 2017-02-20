@@ -1,0 +1,89 @@
+<div ng-app="tree">
+    <div id="networkExplorer" ng-controller="treeCtrl">
+        <div class="network-tree-action-buttons">
+            <button class="btn btn-default btn-add-device" ng-click="launchBuildDevice()" data-toggle="tooltip" data-placement="top"  title="{!! treeLocalization.addDeviceButtonTooltip !!}">{!! treeLocalization.addDeviceButton !!}</button>
+            <button class="btn btn-default btn-scan-device btn-scan-alarms" ng-click="launchScanDevice('A')" data-toggle="tooltip" data-placement="top"  title="{!! treeLocalization.scanAlarmsButtonTooltip !!}">{!! treeLocalization.scanAlarmsButton !!}</button>
+            <button class="btn btn-default btn-scan-device btn-scan-properties" ng-click="launchScanDevice('P')" data-toggle="tooltip" data-placement="top"  title="{!! treeLocalization.scanPropertiesButtonTooltip !!}">{!! treeLocalization.scanPropertiesButton !!}</button>
+            <button class="btn btn-default btn-rebuild-device" ng-click="launchRebuildDevice()" data-toggle="tooltip" data-placement="top"  title="{!! treeLocalization.rebuildDeviceButtonTooltip !!}">{!! treeLocalization.rebuildDeviceButton !!}</button>
+            <button class="btn btn-default btn-remove-device" ng-click="launchRemoveDevice()" data-toggle="tooltip" data-placement="top"  title="{!! treeLocalization.removeDeviceButtonTooltip !!}">{!! treeLocalization.removeDeviceButton !!}</button>
+            <button class="btn btn-default btn-launch-web-interface" ng-click="launchWebInterface()" data-toggle="tooltip" data-placement="top"  title="{!! treeLocalization.launchWebInterfaceButtonTooltip !!}">{!! treeLocalization.launchWebInterfaceButton !!}</button>
+            <button class="btn btn-default btn-launch-web-interface-group-disabled" data-toggle="tooltip" data-placement="top"  title="{!! treeLocalization.launchWebInterfaceButtonGroupDisabledTooltip !!}">{!! treeLocalization.launchWebInterfaceButton !!}</button>
+            <button class="btn btn-default btn-launch-web-interface-sitegate-disabled" data-toggle="tooltip" data-placement="top"  title="{!! treeLocalization.launchWebInterfaceButtonSiteGateDisabledTooltip !!}">{!! treeLocalization.launchWebInterfaceButton !!}</button>
+        </div>
+        <div style="display: none;">
+            <div id="buildDeviceWindow" class="c2-dialog">
+                <div>Add Device</div>
+                <div id="buildDeviceWindowContent"></div>
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="buildProgressWindow" class="c2-dialog">
+                <div>Build Device</div>
+                <div id="buildProgressWindowContent"></div>
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="rebuildProgressWindow" class="c2-dialog">
+                <div>Rebuild Device</div>
+                <div id="rebuildProgressWindowContent"></div>
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="scanProgressWindow" class="c2-dialog">
+                <div>Scan Device</div>
+                <div id="scanProgressWindowContent"></div>
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="removeDeviceWindow" class="c2-dialog">
+                <div>Remove Device</div>
+                <div id="removeDeviceWindowContent"></div>
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="preDeviceWindow" class="c2-dialog">
+                <div>Select Device Options</div>
+                <div id="preDeviceWindowContent"></div>
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="launchVirtualBuildWizard" class="c2-wizard-container">
+                <div>Build Device</div>
+                <div id="buildVirtualBuildWizardContent"></div>
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="sensorTreeWindow" class="c2-dialog">
+                <div>Select Sensor</div>
+                <div id="sensorTreeWindowContent"></div>
+            </div>
+        </div>
+        <div class="treeheader">
+            <span>Network Explorer</span>
+        </div>
+
+        <div id="scrollableTree">
+
+            <network-tree
+                    data-type="json"
+                    allow-drag="false"
+                    allow-drop="false"
+                    tree-model=""
+                    tree-filter=""
+                    has-three-states="false"
+                    has-check-boxes="false"
+                    has-menu-icon="true"
+                    order-by="name"
+                    tree-type="lazy"
+                    >
+            </network-tree>
+
+            <tree-context-menu
+                    control-action="actionControl(message)"
+                    node-control-model="nodeControls"
+                    selected-item-type="selectedItemType"
+                    >
+            </tree-context-menu>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+{
+    "name": "SNMPForward",
+    "alias": "snmpforward",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Snmpforward\\Providers\\SNMPForwardServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}

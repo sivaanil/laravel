@@ -1,0 +1,10 @@
+<div ng-submit="submitForm()"  ng-controller="formCtrl as form" data-url="/device" form-component>
+  <form class="form-horizontal" role="form" ng-controller="deviceCtrl as device">
+    <div class="container-fluid" style="text-align: center">
+      <h3 class="remove-device-message" style="font-size: 18px">Are you sure you want to remove this device?</h3>
+      <button id="remove-device-yes" class="btn btn-default" ng-click="removeDevice()">Yes</button>
+      <button id="remove-device-no" class="btn btn-default" ng-click="closeRemoveDeviceWindow()">No</button>
+    </div>
+  </form>
+</div>
+</div>

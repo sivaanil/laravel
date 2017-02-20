@@ -1,0 +1,346 @@
+<?xml version="1.0"?>
+<project name="Unified" default="main">
+    <!-- Directory where the build is done -->
+    <property name="build.dir" value="unified" />
+    <!-- When encoding, the temp folder for files to encode -->
+    <property name="build.dir.tmp" value="/tmp/${build.dir}" />
+    <property name="build.dir.tmp.hold" value="/tmp/${build.dir}_encoded" />
+    <!-- Directory where scenarios are kept -->
+    <property name="build.scenarios.dir" value="scenarios" />
+    <!-- Directory where archives are stored -->
+    <property name="archive.dir" value="archive" />
+    <!-- Default for linting=true -->
+    <property name="lint" value="true" />
+    <!-- Defaultfor IONCube encoding = false -->
+    <property name="encode" value="false" />
+
+    <property file="build.properties" />
+
+    <fileset dir="unified/app" id="phpfiles">
+        <include name="**/*.php" />
+    </fileset>
+
+    <fileset dir="unified/public" id="jsfiles">
+        <include name="**/*.js" />
+        <exclude name="**/vendor/**" />
+        <exclude name="**/*min.js" />
+    </fileset>
+
+    <!-- Show all of the optional parameters we can pass -->
+    <target name="options">
+        <echo>
+        phing options - this message
+
+        scenario     - required - parameters for the specific build you're building. ./scene for a list of scenarios
+        archive      - optional - Whether to archive the build. Default=false
+        deploy       - optional - Whether to scp the built application to the server specified in your scneario. Default = false
+        encode       - optional - True to attempt to run IONCube encoder at the end of the build. *
+
+        * -- For the encode parameter to work appropriately, IONCube must be installed in a working state at the location specified in
+          -- encoder-path
+        Usage:
+        phing -Dscenario=dev [-Ddeploy=false] [-Darchive=false] [-Dencode=false]
+        </echo>
+    </target>
+
+    <target name="prepare">
+        <tstamp>
+            <format property="YEAR" pattern="%G" />
+        </tstamp>
+        <if>
+            <isset property="help" />
+            <then>
+                <phingcall target="options" />
+                <fail message="You didn't really fail, you just asked for help. It's ok." />
+            </then>
+        </if>
+
+       <if>
+            <available file="${build.scenarios.dir}/${scenario}.properties" />
+            <then>
+                <property file="${build.scenarios.dir}/${scenario}.properties"
+                    override="true"/>
+            </then>
+        </if>
+
+        <!-- Generate the build directory if it does not exist -->
+        <mkdir dir="${build.dir}" />
+        <!-- Copy the codebase into the build directory -->
+        <copy todir="${build.dir}"
+            preservemode="true">
+            <fileset dir="../">
+                <exclude name="deploy/" />
+                <exclude name=".env" />
+            </fileset>
+            <filterchain>
+                <replacetokens begintoken="[[" endtoken="]]">
+					<token key="APP_ENV" value="${app.environment}" />
+					<token key="APP_DEBUG" value="${app.debug}" />
+					<token key="APP_KEY" value="${app.key}" />
+					<token key="DB_DATABASE" value="${db.database}" />
+					<token key="DB_HOST" value="${db.host}" />
+					<token key="DB_USERNAME" value="${db.user}" />
+					<token key="DB_PASSWORD" value="${db.pass}" />
+					<token key="CACHE_DRIVER" value="${driver.cache}" />
+					<token key="SESSION_DRIVER" value="${driver.session}" />
+					<token key="QUEUE_DRIVER" value="${driver.queue}" />
+					<token key="MAIL_DRIVER" value="${mail.driver}" />
+					<token key="MAIL_HOST" value="${mail.host}" />
+					<token key="MAIL_USERNAME" value="${mail.username}" />
+					<token key="MAIL_PORT" value="${mail.port}" />
+					<token key="MAIL_PASSWORD" value="${mail.password}" />
+					<token key="BACKUP_TIME" value="${backup.time}" />
+					<token key="CSWAPI_ENV" value="${cswapi.dir}" />
+					<token key="UNIFIED_ENV" value="${unified.dir}" />
+					<token key="HEARTBEAT_COMMUNITY" value="${heartbeat}" />
+					<token key="TRAP_USERNAME" value="${trap.username}" />
+                    <token key="TRAP_PASSWORD" value="${db.pass}" />
+					<token key="CSWAPI_ROOT" value="${cswapi.root}" />
+					<token key="C2_SERVER_TYPE" value="${server.type}" />
+					<token key="C2_SERVER_MODEL" value="${server.model}" />
+					<token key="UPDATE_ROOT" value="${update.root}" />
+					<token key="UI_VERSION" value="${ui.version}" />
+                    <token key="DB_ROOT_USERNAME" value="${db.root.username}" />
+                    <token key="DB_ROOT_PASSWORD" value="${db.root.password}" />
+                </replacetokens>
+            </filterchain>
+        </copy>
+
+        <!-- Set/Increment the version number here -->
+        <version releaseType="Bugfix" file="version" property="newVersion"/>
+        <php expression="substr('${newVersion}', strrpos('${newVersion}', '.'))" returnProperty="buildNumber" />
+        <if>
+            <isset property="version" />
+            <then>
+                <!-- In this case, we need to update the base version and copy the file to the build directory -->
+                <!-- Need to pull in the new build number and use it appended to the version we were fiven -->
+                <!-- If a specific version is specified, we need to overwrite the version file in the build directory with the property value -->
+                <exec command="touch ${build.dir}/version" />
+                <echo file="${build.dir}/version" append="false">${version}${buildNumber}</echo>
+            </then>
+            <else>
+                <!-- copy the version file to the build directory -->
+                <copy file="version" toFile="${build.dir}/version" overwrite="true" />
+            </else>
+        </if>
+
+
+        <move file="${build.dir}/.env.example"
+              toFile="${build.dir}/.env"
+              overwrite="true">
+        </move>
+        <move file="${build.dir}/bootstrap/app.example.php"
+              toFile="${build.dir}/bootstrap/app.php"
+              overwrite="true">
+        </move>
+    </target>
+
+    <!-- converts es6 scripts to es2015 using babel polyfill -->
+    <target name="babel">
+        <property file="${application.startdir}/scenarios/${scenario}.properties" override="true" />
+        <echo>${abs-fname}</echo>
+        <exec
+            command="babel --presets es2015 ${abs-fname} --out-file ${abs-fname}" />
+    </target>
+
+    <!-- The main build script called with phing -->
+    <target name="main">
+        <phingcall target="prepare" />
+        <phingcall target="build" />
+        <if>
+            <isset property="archive" />
+            <then>
+                <if>
+                    <equals arg1="true" arg2="${archive}" />
+                    <then>
+                        <phingcall target="archive" />
+                    </then>
+                </if>
+            </then>
+        </if>
+        <if>
+            <equals arg1="${deploy}" arg2="true" />
+            <then>
+                <phingcall target="deploy" />
+            </then>
+        </if>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+    <target name="clean-archive">
+        <delete dir="${archive.dir}" />
+    </target>
+
+    <!-- Perform build steps on prepared codebase here -->
+    <target name="build">
+        <phingcall target="phplint" />
+        <phingcall target="jslint" />
+        <phingcall target="test" />
+
+        <!-- Convert es6 files to es2015 using babel -->
+        <!-- This works, but needs a property for where to find node_modules -->
+
+        <foreach param="fname" absparam="abs-fname" target="babel">
+            <fileset dir="${build.dir}">
+                <include name="public/js/lib/*.js" />
+                <include name="modules/Sensors/Assets/js/*.js" />
+                <include name="modules/Snmpforward/Assets/js/*.js" />
+            </fileset>
+        </foreach>
+
+
+        <if>
+            <and>
+                <isset property="FullSiteGate" />
+                <equals arg1="${FullSiteGate}" arg2="true" />
+            </and>
+            <then>
+                <!-- manually publish modules -->
+                <phingcall target="publishModules" />
+            </then>
+        </if>
+
+
+        <!-- Encode the codebase if specified -->
+        <if>
+            <and>
+                <isset property="encode" />
+                <equals arg1="${encode}" arg2="true" />
+            </and>
+            <then>
+                <!-- Encode the source -->
+                <phingcall target="encode" />
+            </then>
+        </if>
+
+    </target>
+
+    <target name="publishModules">
+        <!-- Modules to publish (everything under Resources) -->
+        <property name="toPublish" value="Snmpforward,Wizard,Sensors" />
+        <foreach list="${toPublish}" delimiter="," target="publishModule" param="modName" />
+    </target>
+
+    <target name="publishModule">
+        <property name="dir.src" value="${build.dir}/modules/${modName}/Assets" />
+        <php expression="strtolower('${modName}')" returnProperty="destDirName" />
+        <property name="dir.dest" value="${build.dir}/public/modules/${destDirName}" />
+        <!-- copy the files from dir.src to dir.dest -->
+        <!-- create the directory if it doesn't exist -->
+        <mkdir dir="${dir.dest}" />
+        <copy todir="${dir.dest}">
+            <fileset dir="${dir.src}">
+                <include name="**" />
+                <exclude name="**/.git/*" />
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- Performs IONCube Encoding -->
+    <target name="encode">
+
+        <delete dir="${build.dir.tmp.hold}" />
+        <delete dir="${build.dir.tmp}" />
+        <mkdir dir="${build.dir.tmp.hold}" />
+        <mkdir dir="${build.dir.tmp}" />
+
+        <!-- Copy the prepared code to another folder to temporarily store for encoding -->
+        <copy
+            todir="${build.dir.tmp}"
+            preservemode="true"
+            preservelastmodified="true"
+            overwrite="true"
+        >
+            <fileset dir="${build.dir}">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+
+        <!-- Get the TSTAMP current year -->
+        <tstamp>
+            <format property="YEAR" pattern="%G" />
+        </tstamp>
+
+        <!-- Encode the temporary files into the build folder -->
+
+        <ioncubeencoder
+            allowencodingintosource="true"
+            fromdir="${build.dir.tmp}"
+            todir="${build.dir.tmp.hold}"
+            targetoption="replace"
+            ignore=".git/ .svn/ phpunit/ vendor/ resources/views/ modules/"
+            phpversion="55_8.3_64"
+            ioncubepath="/usr/local/bin"
+            nodoccomments="true"
+            showcommandline="true"
+            ignoredeprecatedwarnings="true"
+            ignorestrictwarnings="true"
+        >
+            <comment>Copyright (c) ${YEAR} - CSquared Systems LLC</comment>
+        </ioncubeencoder>
+
+        <copy
+            todir="${build.dir}"
+            preservemode="true"
+            preservelastmodified="true"
+            overwrite="true"
+        >
+            <fileset dir="${build.dir.tmp.hold}">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+
+    </target>
+
+
+    <!-- create an archive for this build -->
+    <target name="archive">
+        <mkdir dir="${archive.dir}" />
+        <exec command="tar czvf ${archive.dir}/unified_${DSTAMP}.tar.gz unified"/>
+    </target>
+
+    <!-- Deploy built application somewhere -->
+    <target name="deploy">
+        <property file="${application.startdir}/scenarios/${scenario}.properties" override="true" />
+        <!-- move the artifact to the correct server for the scenario -->
+        <if>
+            <isset property="deploy.host" />
+        <then>
+            <scp username="${deploy.user}" password="${deploy.pass}" host="${deploy.host}" todir="${deploy.path}">
+                <fileset dir="unified">
+                    <exclude name="unified*.tar.gz" />
+                </fileset>
+            </scp>
+        </then>
+        </if>
+    </target>
+
+    <target name="test">
+        <exec command="phpunit --bootstrap ${build.dir}/bootstrap/autoload.php ${build.dir}/tests/api" />
+    </target>
+
+    <target name="jslint">
+        <if>
+            <equals arg1="${lint}" arg2="true" />
+        <then>
+            <jsllint>
+                <fileset refid="jsfiles" />
+            </jsllint>
+        </then>
+        </if>
+    </target>
+
+    <target name="phplint">
+        <if>
+            <equals arg1="${lint}" arg2="true" />
+            <then>
+                <phplint haltonfailure="true">
+                    <fileset refid="phpfiles" />
+                </phplint>
+            </then>
+        </if>
+    </target>
+</project>

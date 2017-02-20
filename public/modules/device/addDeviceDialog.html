@@ -1,0 +1,47 @@
+<div ng-submit="submitForm()"  ng-controller="formCtrl as form" data-url="/device" form-component>
+    <form class="form-horizontal" role="form" ng-controller="deviceCtrl as device" device-module ng-submit="device.submitPreForm()">
+        <div class="col-xs-12 container-fluid">
+            <div class="col-xs-12 wizard-form-section">
+                <div>&nbsp;</div>
+                <div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-3" for="deviceName">{!!deviceLocalization.devicename!!}:</label>
+                    <div class="col-xs-12 col-sm-9" form-validation-field="deviceName">
+                        <input type="text" class="form-control" id="deviceName" ng-model="deviceName" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.devicenameTooltip !!}" placeholder="{!!deviceLocalization.enterthe!!} {!!deviceLocalization.devicename!!}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-3" for="deviceClass">{!!deviceLocalization.chooseDeviceClass!!}:</label>
+                    <div class="col-xs-12 col-sm-9" form-validation-field="deviceClass">
+                        <select id="deviceClass" name="deviceClass" class="form-control" ng-model="deviceClass" ng-change="loadDeviceTypes()" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.virtualDeviceTypeTT !!}">
+                            <option ng-repeat="option in deviceClassList" value="{!!option.description!!}">{!!option.description!!}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-3" for="deviceType">{!!deviceLocalization.chooseDeviceType!!}:</label>
+                    <div class="col-xs-12 col-sm-9" form-validation-field="deviceType">
+                        <select id="deviceType" name="deviceType" class="form-control" ng-model="deviceType" ng-change="loadDeviceOptions()" data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.virtualDeviceTypeTT !!}">
+                            <option ng-repeat="option in deviceTypeList" value="{!!option.id!!}">{!!option.vendor!!} {!!option.model!!}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-3" for="deviceOptions">{!!deviceLocalization.deviceOptions!!}:</label>
+                    <div class="col-xs-12 col-sm-9" form-validation-field="deviceOptions">
+                        <select id="deviceOptions" name="deviceOptions" class="form-control" ng-model="deviceOptions" ng-disabled="formData.chosenDeviceType !== '5063'"data-toggle="tooltip" data-placement="top"  title="{!! virtualLocalization.virtualDeviceTypeTT !!}">
+                            <option ng-repeat="option in deviceOptionsList" value="{!!option.id!!}">{!!option.name!!}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-footer-buttons">
+            <div ng-click="submitPreForm()" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.createdeviceTooltip !!}">
+                <img  src="./img/icons/disk.png" class="btn-submit"> {!!deviceLocalization.createdevice!!}
+            </div>
+            <div ng-click="closePreDialogWindow()" data-toggle="tooltip" data-placement="top"  title="{!! deviceLocalization.cancelCreatedeviceTooltip !!}">
+                <img src="./img/icons/cancel.png"> {!!deviceLocalization.cancel!!}
+            </div>
+        </div>
+    </form>
+</div>

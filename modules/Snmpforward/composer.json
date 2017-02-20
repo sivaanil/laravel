@@ -1,0 +1,15 @@
+{
+	"name": "pingpong-modules/snmpforward",
+	"description": "",
+	"authors": [
+		{
+			"name": "Pingpong Labs",
+			"email": "pingpong.labs@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Modules\\Snmpforward\\": ""
+		}
+	}
+}

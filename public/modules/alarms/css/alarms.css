@@ -1,0 +1,284 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 5, 2014, 10:40:42 AM
+    Author     : joseph.nagel
+*/
+#alarmsContainer {
+
+}
+
+#alarmsContainer dl {
+
+    border: 3px double #ccc;
+    padding: 0.5em;
+
+}
+
+#alarmsAlarmTop dl {
+
+    border: 3px double #ccc;
+    padding: 0.5em;
+
+}
+
+#alarmsContainer dd {
+
+    margin: 0 0 0 110px;
+    padding: 0 0 0.5em 0;
+
+}
+
+#alarmsAlarmTop dd {
+
+    margin: 0 0 0 110px;
+    padding: 0 0 0.5em 0;
+
+}
+
+#alarmsContainer2 {
+    margin-top: 10px;
+}
+
+#alarmsAlarmContainer {
+    margin-top: 0px;
+}
+
+.alarmFilterUl {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.alarmFilterUl label {
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+.alarmFilterUl .cb-group {
+    font-weight: bold;
+    margin-left: 0px;
+}
+
+.alarmFilterUl input {
+    position: relative;
+    top: 2px;
+    margin-right: 4px;
+}
+
+.cdropdown-cb {
+    margin-right: 4px ! important;
+    position: relative;
+    top: 2px;
+}
+
+#alarmsFilterContainer li {
+    display: none;
+}
+
+#alarmsGridComponent li {
+    display: none;
+}
+
+.selectAll {
+    font-weight: 900;
+    font-size: small;
+}
+
+.selectOne {
+    font-weight: 200;
+}
+
+#alarmsContainer dt {
+
+    float: left;
+    clear: left;
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+
+}
+
+#alarmsContainer dt:after {
+    content: ":";
+}
+
+.group-list {
+    -moz-column-gap: 20;
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 20;
+    column-count: 3;
+    column-gap: 20;
+}
+
+#mainAlarmDiv {
+    position: relative;
+    margin-top: -8px;
+
+    /* Firefox */
+    height: -moz-calc(100vh - 150px);
+    /* WebKit */
+    height: -webkit-calc(100vh - 150px);
+    /* Opera */
+    height: -o-calc(100vh - 150px);
+    /* Standard */
+    height: calc(100vh - 155px);
+}
+
+#alarmTitleBar {
+    width: 99%;
+    height: 33px;
+    background-color: #1c59ae;
+    color: #FFFFFF;
+    font-family: Verdana;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    border-bottom: 2px solid #ddd ! important;
+}
+
+#alarmTitleBarHeading {
+    float: left;
+}
+
+#alarmMenu {
+    float: right;
+    background-color: transparent ! important;
+    border: none ! important;
+}
+
+#alarmMenu li {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#alarmTabMenuContainer {
+    height: 25px;
+    width: 580px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    position: relative;
+}
+
+#alarmTabMenuContainer.container-minimized {
+    margin-right: 40px;
+    width: 40px;
+    float: right;
+    position: absolute;
+    right: 0px;
+}
+
+#alarmTabMenu[style] {
+    background-color: transparent;
+    border: none ! important;
+    height: 25px ! important;
+    right: 0px ! important;
+}
+
+#alarmTabMenu li[style] {
+    height: 26px ! important;
+    border: none ! important;
+    background-color: #bbb;
+    border-top-left-radius: 6px ! important;
+    border-top-right-radius: 6px ! important;
+    border-bottom-left-radius: none ! important;
+    border-bottom-right-radius: none ! important;
+    padding-top: 5px ! important;
+}
+
+#alarmTabMenu li.active-tab[style] {
+    background-color: #eee ! important;
+}
+
+#menuWrapperalarmTabMenu li.active-tab[style] {
+    background-color: #ccc ! important;
+}
+
+#alarmMenu {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.jqx-grid-column-header .jqx-widget-header[style] {
+    margin-left: -20px ! important;
+}
+
+.critical.severity-cell:not(.empty-cell) div[style] {
+    background-image: url('../../../img/icons/led_red.png') ! important;
+}
+
+.major.severity-cell:not(.empty-cell) div[style] {
+    background-image: url('../../../img/icons/led_orange.png') ! important;
+}
+
+.minor.severity-cell:not(.empty-cell) div[style] {
+    background-image: url('../../../img/icons/led_yellow.png') ! important;
+}
+
+.warning.severity-cell:not(.empty-cell) div[style] {
+    background-image: url('../../../img/icons/led_aqua.png') ! important;
+}
+
+.information.severity-cell:not(.empty-cell) div[style] {
+    background-image: url('../../../img/icons/led_green.png') ! important;
+}
+.severity-cell:not(.empty-cell) div[style] {
+    background-repeat: no-repeat ! important;
+    background-position: left ! important;
+    text-align: left ! important;
+    padding-left: 20px ! important;
+    margin-left: 5px;
+}
+
+.cell-font-10 {
+    font-size: 10px;
+    line-height: 11px;
+}
+
+.cell-font-11 {
+    font-size: 11px;
+    line-height: 12px;
+}
+
+.cell-font-12 {
+    font-size: 12px;
+}
+
+.path-cell div[style], .description-cell div[style] {
+    height: 62px ! important;
+    display: table-cell ! important;
+    vertical-align: middle;
+    padding-top: 2px ! important;
+    padding-left: 8px ! important;
+    padding-right: 8px ! important;
+    white-space: normal ! important;
+}
+
+.path-cell a {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+/* Resizes for smaller/older mobile devices */
+@media only screen and (max-width: 650px) {
+    #mainAlarmDiv {
+        /* Firefox */
+        height: -moz-calc(100vh - 125px);
+        /* WebKit */
+        height: -webkit-calc(100vh - 125px);
+        /* Opera */
+        height: -o-calc(100vh - 125px);
+        /* Standard */
+        height: calc(100vh - 120px);
+    }
+    #alarmTitleBarHeading {
+        font-size: 14px;
+    }
+}

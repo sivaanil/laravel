@@ -1,0 +1,459 @@
+/*
+  SmartWizard 2.0 plugin
+  jQuery Wizard control Plugin
+  by Dipu
+
+  http://www.techlaboratory.net
+  http://tech-laboratory.blogspot.com
+*/
+.swMain {
+  position:relative;
+  display:block;
+  margin:0;
+  padding:0;
+  /* border: 0 solid #CCC; */
+  overflow:auto;
+  float:left;
+  width:98%;
+  min-height:98%;
+}
+.swMain .stepContainer {
+  display:block;
+  position: relative;
+  margin: 0;
+  padding:0;
+  border: 0 solid #CCC;
+  overflow-x: hidden;
+  overflow-y: auto;
+  clear:both;
+  height:360px;
+}
+
+
+.swMain .stepContainer div.content {
+  display:block;
+  position: absolute;
+  float:left;
+  margin: 0;
+  padding:5px;
+  /*border: 1px solid #CCC;*/
+  font: normal 12px Verdana, Arial, Helvetica, sans-serif;
+  color:#5A5655;
+  background-color:#FFFFFF;
+  height:360px;
+  text-align:left;
+  overflow:none;
+  z-index:88;
+  -webkit-border-radius: 5px;
+  -moz-border-radius  : 5px;
+  width:98%;
+  clear:both;
+}
+
+.swMain .stepContainer div.content .form-group {
+    margin-bottom:0px;
+}
+
+
+.swMain div.actionBar {
+  display:block;
+  position: relative;
+  clear:both;
+  margin:             3px 0 0 0;
+  /*border:             1px solid #CCC;*/
+  padding:            0;
+  color:              #5A5655;
+  height:40px;
+  text-align:left;
+  overflow:auto;
+  background: #0c59af;
+  z-index:88;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius  : 5px;
+  left:0;
+}
+
+.swMain .stepContainer .StepTitle {
+  display:block;
+  position: relative;
+  margin:0;
+ /* border:1px solid #E0E0E0;*/
+  padding:5px;
+  font: bold 16px Verdana, Arial, Helvetica, sans-serif;
+  color:#5A5655;
+  clear:both;
+  text-align:left;
+  z-index:88;
+  border-radius: 5px 0 0 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius  : 5px 0 0 5px;
+}
+.swMain ul.anchor {
+  position: relative;
+  display:inline-block;
+  float:left;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  clear: both;
+}
+.swMain ul.anchor li{
+  float: left;
+}
+/* Anchor Element Style */
+.swMain ul.anchor li a {
+  color: #FFF;
+  display: inline-block;
+  background: transparent;
+  text-decoration: none;
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 5px 0 5px;
+  text-align: center;
+  margin-right: 23px;
+/*  display:block;
+  position:relative;
+  float:left;
+  margin: 5px 0 0 0;
+  padding:3px;
+  height:60px;
+  width:230px;
+  text-decoration: none;
+  outline-style:none;
+  border-radius: 5px 0 0 5px;
+  -moz-border-radius  : 5px 0 0 5px;
+  -webkit-border-radius: 5px;
+  z-index:99;
+*/
+}
+.swMain ul.anchor li a .stepNumber{
+  position:relative;
+  float:left;
+  width:30px;
+  text-align: center;
+  padding-top:10px;
+ /* padding: 0 5px 5px;*/
+  font: bold 14px Verdana, sans-serif;
+}
+.swMain ul.anchor li a .stepDesc{
+  position:relative;
+  display:inline-block;
+  float:left;
+  text-align: left;
+  padding-top: 10px;
+  /*padding:5px;*/
+
+  font: bold 14px Verdana, sans-serif;
+}
+.swMain ul.anchor li a .stepDesc small{
+  font: normal 12px Verdana, Arial, Helvetica, sans-serif;
+}
+.swMain ul.anchor li a.selected{
+  color:#F8F8F8;
+  background: #0c59af;  /* EA8511 */
+  /*-moz-box-shadow: 5px 5px 8px #888;
+  -webkit-box-shadow: 5px 5px 8px #888;
+  box-shadow: 5px 5px 8px #888;*/
+}
+
+.swMain ul.anchor li a.done:before {
+    border-color:#0c59af;
+    border-left-color:transparent;
+}
+
+.swMain ul.anchor li a.selected:before {
+    border-color: #0c59af;
+    border-left-color: transparent;
+}
+
+.swMain ul.anchor li:first-child a.selected:before {
+    border:none;
+    background-color:transparent;
+}
+
+.swMain ul.anchor li:first-child a.done:before {
+    border:none;
+    background-color:transparent;
+}
+
+
+.swMain ul.anchor li a.selected:after {
+    border-left-color: #0c59af;
+}
+
+.swMain ul.anchor li a.selected:hover {
+  color:#F8F8F8;
+  background: #0c59af;
+}
+
+.swMain ul.anchor li:first-child a {
+    padding-left: 15px;
+    -moz-border-radius: 4px 0 0 4px;
+    -webkit-border-readius: 4px;
+    border-radius: 4px 0 0 4px;
+}
+
+.swMain ul.ancher li:first-child a:before {
+    border: none;
+}
+
+
+.swMain ul.anchor li:last-child a {
+  padding-right: 15px;
+  -moz-border-radius: 0 12px 12px 0;
+  -webkit-border-radius: 0;
+  border-radius: 0 12px 12px 0;
+}
+
+.swMain ul.anchor li:last-child a:after {
+  border:none;
+}
+
+.swMain ul.anchor li a:before, .swMain ul.anchor li a:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  border: 0 solid #3498db;
+  border-width: 20px 10px;
+  width: 0;
+  height: 0;
+}
+
+.swMain ul.anchor li a:before {
+  left: -20px;
+  border-left-color:transparent;
+}
+
+.swMain ul.anchor li a:after {
+    left: 100%;
+    border-color: transparent;
+    border-left-color: #3498db;
+}
+
+
+.swMain ul.anchor li a.done {
+  position:relative;
+  color:#FFF;
+  background: #0c59af; /*#8CC63F;*/
+  z-index:99;
+}
+
+.swMain ul.anchor li a.done:after {
+    left:100%;
+    border-color: transparent;
+    border-left-color: #0c59af;
+}
+
+.swMain ul.anchor li a.done:before {
+    left: -20px;
+    border-left-color: transparent;
+}
+
+.swMain ul.anchor li a.done:hover {
+  color:#5A5655;
+  cursor:pointer;
+}
+.swMain ul.anchor li a.disabled {
+  color:#CCCCCC;
+  background: #3498db; /*#F8F8F8;*/
+  cursor:text;
+}
+.swMain ul.anchor li a.disabled:hover {
+  color:#CCCCCC;
+  background: #3498db; /*#F8F8F8;*/
+}
+
+.swMain ul.anchor li a.error {
+  color:#6c6c6c !important;
+  background: #f08f75 !important;
+/*  border: 1px solid #fb3500 !important;*/
+}
+
+.swMain ul.anchor li a.error:hover {
+  color:#000 !important;
+}
+
+.swMain ul.anchor li a.error:before {
+    border-color: #f08f75;
+    border-left-color: transparent;
+}
+
+.swMain ul.anchor li a.selected.error:before {
+    left: -20px;
+    border-color: #f08f75;
+    border-left-color: transparent;
+}
+
+.swMain ul.anchor li a.done.error:before {
+    left: -20px;
+    border-color: #f08f75;
+    border-left-color: transparent;
+}
+
+.swMain ul.anchor li a.error:after {
+    left: 100%;
+    border-color: transparent;
+    border-left-color: #f08f75;
+}
+
+.swMain ul.anchor li a.done.error:after {
+    left:100%;
+    border-color: transparent;
+    border-left-color: #f08f75;
+}
+
+.swMain ul.anchor li a.selected.error:after {
+    left:100%;
+    border-color: transparent;
+    border-left-color: #f08f75;
+}
+
+.swMain .buttonNext {
+  display:block;
+  float:right;
+  margin:5px 3px 0 3px;
+  margin-right: 10px;
+  padding:5px;
+  text-decoration: none;
+  text-align: left;
+  padding-right: 20px;
+  font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+  width: 70px;
+  color:#FFF;
+  outline-style:none;
+  /*background-color:   #5A5655;*/
+  background: url('/img/icons/arrow_right.png');
+  background-repeat:no-repeat;
+  background-position: center right;
+  border: 1px solid #5A5655;
+  -moz-border-radius  : 5px;
+  -webkit-border-radius: 5px;
+}
+.swMain .buttonDisabled {
+  color:#F8F8F8  !important;
+  /*background-color: #CCCCCC !important; */
+  /*border: 1px solid #CCCCCC  !important;*/
+  cursor:text;
+}
+.swMain .buttonPrevious {
+  display:block;
+  float:right;
+  margin:5px 3px 0 3px;
+  padding:5px;
+  text-decoration: none;
+  text-align: right;
+  font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+  width:100px;
+  color:#FFF;
+  outline-style:none;
+  /*background-color:   #5A5655;*/
+  background: url('/img/icons/arrow_left.png');
+  background-repeat:no-repeat;
+  background-position: center left;
+  border: 1px solid #5A5655;
+  -moz-border-radius  : 5px;
+  -webkit-border-radius: 5px;
+}
+.swMain .buttonFinish {
+  display:block;
+  float:right;
+  margin:5px 10px 0 3px;
+  padding:5px;
+  text-decoration: none;
+  text-align: center;
+  font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+  width:100px;
+  color:#FFF;
+  outline-style:none;
+  /*background-color:   #5A5655;*/
+  background: url('/img/icons/disk.png');
+  background-repeat:no-repeat;
+  background-position: center left;
+  border: 1px solid #5A5655;
+  -moz-border-radius  : 5px;
+  -webkit-border-radius: 5px;
+}
+
+/* Form Styles */
+
+.txtBox {
+  border:1px solid #CCCCCC;
+  color:#5A5655;
+  font:13px Verdana,Arial,Helvetica,sans-serif;
+  padding:2px;
+  width:430px;
+}
+.txtBox:focus {
+  border:1px solid #EA8511;
+}
+
+.swMain .loader {
+  position:relative;
+  display:none;
+  float:left;
+  margin: 2px 0 0 2px;
+  padding:8px 10px 8px 40px;
+  border: 1px solid #FFD700;
+  font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+  color:#5A5655;
+  background: #FFF url(../images/loader.gif) no-repeat 5px;
+  -moz-border-radius  : 5px;
+  -webkit-border-radius: 5px;
+  z-index:998;
+}
+.swMain .msgBox {
+  position:relative;
+  display:none;
+  float:left;
+  margin: 3px 0 0 5px;
+  padding:5px;
+  border: 1px solid #FFD700;
+  background-color: #FFFFDD;
+  font: normal 12px Verdana, Arial, Helvetica, sans-serif;
+  color:#5A5655;
+  -moz-border-radius  : 5px;
+  -webkit-border-radius: 5px;
+  z-index:999;
+  min-width:200px;
+}
+.swMain .msgBox .content {
+  font: normal 12px Verdana,Arial,Helvetica,sans-serif;
+  padding: 0;
+  float:left;
+}
+.swMain .msgBox .close {
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  color: #CCC;
+  display: block;
+  float: right;
+  margin: 0 0 0 5px;
+  outline-style: none;
+  padding: 0 2px 0 2px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+}
+.swMain .msgBox .close:hover{
+  color: #EA8511;
+  border: 1px solid #EA8511;
+}
+.swMain .stepContainer .SummaryLabel {
+  display:block;
+  position: relative;
+  margin:0;
+ /* border:1px solid #E0E0E0;*/
+  padding:5px;
+  font: normal 14px Verdana, Arial, Helvetica, sans-serif;
+  color:#5A5655;
+  clear:both;
+  text-align:left;
+  z-index:88;
+  border-radius: 5px 0 0 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius  : 5px 0 0 5px;
+  text-decoration: underline;
+}
+

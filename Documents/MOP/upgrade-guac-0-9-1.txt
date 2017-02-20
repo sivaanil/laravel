@@ -1,0 +1,42 @@
+Guacamole from the Ubuntu 14.04 repository is version 0.8.3. This does not work well with touch screen devices.
+
+Follow these steps to update to 0.9.1.
+Note that this only updates the Java web app. It does not update the guacd server. This seems to work okay for 0.9.1 but not for later versions.
+We plan to release full update to 0.9.8 or later.
+
+Download guacamole-0.9.1.war to the SiteGate's c2-maintenance home directory from http://guac-dev.org/release/release-notes-0-9-1
+If the SiteGate has public internet access then you can do this directly with:
+	cd ~
+	wget http://downloads.sourceforge.net/project/guacamole/current/binary/guacamole-0.9.1.war
+otherwise it will need to be copied with scp etc.
+
+Stop services
+	sudo service guacd stop
+	sudo service tomcat7 stop
+
+Save the auth-hmac jar file.
+	cd ~
+	cp /var/lib/tomcat7/webapps/guacamole/WEB-INF/lib/guacamole-auth-hmac-1.0-SNAPSHOT.jar .
+
+Remove the existing web app.
+	cd /var/lib/tomcat7/webapps/
+	sudo rm -rf guacamole/
+
+Replace the war file	
+	cd /var/lib/guacamole/
+	sudo cp ~/guacamole-0.9.1.war guacamole.war
+
+Restart Tomcat
+	sudo service tomcat7 start
+	
+Wait 30 seconds for the war file to be expanded.  There should now be a new guacamole directory in /var/lib/tomcat7/webapps/
+
+Restore the jar file.
+	cd /var/lib/tomcat7/webapps/guacamole/WEB-INF/lib
+	sudo cp ~/guacamole-auth-hmac-1.0-SNAPSHOT.jar
+	sudo chown tomcat7:tomcat7 guacamole-auth-hmac-1.0-SNAPSHOT.jar
+
+sudo service tomcat7 restart
+sudo service guacd start
+
+Try Guacamole.  You may need to clear browser cache.

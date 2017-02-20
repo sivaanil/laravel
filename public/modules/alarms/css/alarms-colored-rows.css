@@ -1,0 +1,177 @@
+/*
+Currently not used - this is the styling for colored shaded rows - may be used again in the future as an optional user preference
+*/
+
+.critical.jqx-grid-cell-hover:not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #992E2E;
+}
+
+.critical.jqx-grid-cell-hover:not(.jqx-grid-cell-selected) a {
+    color: #0000CC;
+}
+
+.critical.jqx-grid-cell-selected:not(.jqx-grid-cell-hover) {
+    color: white;
+    background-color: #4C1717;
+    background-image: none;
+}
+
+.critical.jqx-grid-cell-selected:not(.jqx-grid-cell-hover) a {
+/ / The default link color is good / / color : #0000CC;
+}
+
+.critical:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #Ff4c4c;
+    background-image: url('../../../css/styles/images/row-shading.png');
+    background-size: 100% 100%;
+}
+
+.critical:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) a {
+    color: #0000CC;
+}
+
+.major.jqx-grid-cell-selected:not(.jqx-grid-cell-hover) {
+    color: white;
+    background-color: #6B5632;
+    background-image: none;
+}
+
+.major.jqx-grid-cell-hover:not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #B28F53;
+    background-image: none;
+}
+
+.major:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #Ffcc77;
+    background-image: url('../../../css/styles/images/row-shading.png');
+    background-size: 100% 100%;
+}
+
+.major.jqx-grid-cell-selected:not(.jqx-grid-cell-hover) a {
+    color: #8EB9DF;
+}
+
+.major.jqx-grid-cell-hover:not(.jqx-grid-cell-selected) a {
+    color: #0000CC;
+}
+
+.major:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) a {
+    color: #0000CC;
+}
+
+.minor.jqx-grid-cell-selected:not(.jqx-grid-cell-hover) {
+    color: white;
+    background-color: #5A582E;
+    background-image: none;
+}
+
+.minor.jqx-grid-cell-hover:not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #96924D;
+    background-image: none;
+}
+
+.minor:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #FAF480;
+    background-image: url('../../../css/styles/images/row-shading.png');
+    background-size: 100% 100%;
+}
+
+.minor.jqx-grid-cell-selected:not(.jqx-grid-cell-hover) a {
+    color: #8EB9DF;
+}
+
+.minor.jqx-grid-cell-hover:not(.jqx-grid-cell-selected) a {
+    color: #0000CC;
+}
+
+.minor:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) a {
+    color: #0000CC;
+}
+
+.warning.jqx-grid-cell-hover:not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #657299;
+    background-image: none;
+}
+
+.warning.jqx-grid-cell-selected:not(.jqx-grid-cell-hover) {
+    color: white;
+    background-color: #3D445C;
+    background-image: none;
+}
+
+.warning:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #A8beff;
+    background-image: url('../../../css/styles/images/row-shading.png');
+    background-size: 100% 100%;
+}
+
+.warning.jqx-grid-cell-selected:not(.jqx-grid-cell-hover) a {
+    color: #8EB9DF;
+}
+
+.warning.jqx-grid-cell-hover:not(.jqx-grid-cell-selected) a {
+    color: #0000CC;
+}
+
+.warning:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) a {
+    color: #0000CC;
+}
+
+.information.jqx-grid-cell-hover:not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #6E9999;
+    background-image: none;
+}
+
+.information.jqx-grid-cell-selected:not(.jqx-grid-cell-hover) {
+    color: white;
+    background-color: #425C5C;
+    background-image: none;
+}
+
+.information:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #b7ffff;
+    background-image: url('../../../css/styles/images/row-shading.png');
+    background-size: 100% 100%;
+}
+
+.information.jqx-grid-cell-selected:not(.jqx-grid-cell-hover) a {
+    color: #8EB9DF;
+}
+
+.information.jqx-grid-cell-hover:not(.jqx-grid-cell-selected) a {
+    color: #0000CC;
+}
+
+.information:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) a {
+    color: #0000CC;
+}
+
+.major:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .major:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #Ffcc77;
+}
+
+.minor:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .minor:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #FAF480;
+}
+
+.warning:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .warning:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #A8beff;
+}
+
+.information:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .information:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #b7ffff;
+}

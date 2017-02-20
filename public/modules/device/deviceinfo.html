@@ -1,0 +1,248 @@
+<div ng-submit="submitForm()"  ng-controller="formCtrl as form" ng-submit="submitForm()" form-component>
+  <form class="form-horizontal" role="form" ng-controller="deviceCtrl as device" device-info class="device-info-form" style="font-size: 12px;">
+    <div class="title-bar">
+      <h4 title="NID:{!!rootScope.$nodeId!!}/DID:{!!formData.id!!}">Device Information</h4>
+    </div>
+    <div>
+      <div class="col-xs-12 col-md-6 form-column container-fluid">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-md-5">{!!deviceLocalization.class!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7">
+              {!!formData.className!!}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-md-5">{!!deviceLocalization.type!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7">
+              {!!formData.typeName!!}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-md-5">{!!deviceLocalization.primaryipaddress!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7">
+              {!!formData.ip_address!!}
+            </div>
+          </div>
+          <!--
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-5">{!!deviceLocalization.secondaryipaddress!!}</label>
+            <div class="col-xs-12 col-sm-6 col-md-7">
+              {!!formData.ip_address_2!!}
+            </div>
+          </div>
+          !-->
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-md-5">{!!deviceLocalization.webuiusername!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7">
+              {!!formData.username!!}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-md-5">{!!deviceLocalization.webuipassword!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7">
+              {!!formData.password!!}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12" ng-show="formData.uses_snmp != 0">
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-md-5" for="snmpVer">{!!deviceLocalization.snmpversion!!}:</label>
+            <div class="col-xs-3 col-sm-3" form-validation-field="snmpVer">
+              {!!formData.snmp_version!!}
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer != '3'">
+            <label class="control-label col-xs-12 col-md-5" for="snmpRead">{!!deviceLocalization.readstring!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-5" form-validation-field="snmpRead">
+              {!!formData.read_community!!}
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer != '3'">
+            <label class="control-label col-xs-12 col-md-5" for="snmpWrite">{!!deviceLocalization.writestring!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-5" form-validation-field="snmpWrite">
+              {!!formData.write_community!!}
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer == '3'">
+            <label class="control-label col-xs-12 col-md-5" for="snmpAuthType">{!!deviceLocalization.securitytype!!}:</label>
+            <div class="col-xs-4 col-sm-3" form-validation-field="snmpAuthType">
+              {!!formData.snmpAuthType!!}
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer == '3' && (formData.snmpAuthType == 'authNoPriv' || formData.snmpAuthType == 'authPriv')">
+            <label class="control-label col-xs-12 col-md-5" for="snmpUserName">{!!deviceLocalization.snmpusername!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-5" form-validation-field="snmpUserName">
+              {!!formData.snmpUserName!!}
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer == '3' && (formData.snmpAuthType == 'authNoPriv' || formData.snmpAuthType == 'authPriv')">
+            <label class="control-label col-xs-12 col-md-5" for="snmpAuthEncryption">{!!deviceLocalization.authencryption!!}:</label>
+            <div class="col-xs-4 col-sm-3" form-validation-field="snmpAuthEncryption">
+              {!!formData.snmpAuthEncryption!!}
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer == '3' && (formData.snmpAuthType == 'authNoPriv' || formData.snmpAuthType == 'authPriv')">
+            <label class="control-label col-xs-12 col-md-5" for="snmpAuthPassword">{!!deviceLocalization.authpassword!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-5" form-validation-field="snmpAuthPassword">
+              {!!formData.snmpAuthPassword!!}
+            </div>
+          </div>
+
+          <div class="form-group" ng-show="formData.snmpVer == '3' && formData.snmpAuthType == 'authPriv'">
+            <label class="control-label col-xs-12 col-md-5" for="snmpPrivacyEncryption">{!!deviceLocalization.privacyencryption!!}:</label>
+            <div class="col-xs-4 col-sm-3" form-validation-field="snmpPrivacyEncryption">
+              {!!formData.snmpPrivacyEncryption!!}
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.snmpVer == '3' && formData.snmpAuthType == 'authPriv'">
+            <label class="control-label col-xs-12 col-md-5" for="snmpPrivacyPassword">{!!deviceLocalization.privacypassword!!}:</label>
+            <div class="col-xs-12 col-sm-6 col-md-5" form-validation-field="snmpPrivacyPassword">
+              {!!formData.snmpPrivacyPassword!!}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <h5>{!!deviceLocalization.portsinuse!!}</h5>
+          <table class="table table-striped" style="font-size: 11px;">
+            <tr>
+              <th>Device Name</th>
+              <th>{!!deviceLocalization.service!!}</th>
+              <th>{!!deviceLocalization.modemport!!}--></th>
+              <th>{!!deviceLocalization.deviceport!!}</th>
+            </tr>
+            <tr ng-repeat="devicePort in formData.ports">
+              <td>{!!devicePort['Device Name']!!}</td>
+              <td>{!!devicePort['Port Type']!!}</td>
+              <td>{!!devicePort.From!!}</td>
+              <td>{!!devicePort.To!!}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-6 form-column container-fluid">
+        <div class="col-xs-12">
+          <div ng-show="!formData.hasTwoScanners">
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Scan On:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!!formData.scan_enabled == 1 ? 'Yes' : 'No'!!}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Scan Interval:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!!formData.scan_int!!} Minutes
+              </div>
+            </div>
+          </div>
+          <div ng-show="formData.hasTwoScanners">
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Scan Alarms On:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!!formData.scan_alarms_enabled == 1 ? 'Yes' : 'No'!!}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Scan Properties On:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!!formData.scan_properties_enabled == 1 ? 'Yes' : 'No'!!}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Alarms Scan Interval:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!!formData.scan_alarms_interval!!} Minutes
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Properties Scan Interval:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!!formData.scan_properties_interval!!} Minutes
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-md-5">Retry Interval:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7">
+              {!!formData.retry_interval!!} Minutes
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-md-5">Fail Threshold:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7">
+              {!!formData.fail_threshold!!}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-md-5">Failed Scan Count:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7">
+              {!!formData.fail_alarms_count!!}
+            </div>
+          </div>
+          <div ng-show="!formData.hasTwoScanners">
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Last Successful Scan:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!! mainService.legibleDate(formData.last_scan) !!}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Last Failed Scan:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!! mainService.legibleDate(formData.last_failed_scan) !!}
+              </div>
+            </div>
+          </div>
+          <div ng-show="formData.hasTwoScanners">
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Failed Properties Scan Count:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!!formData.fail_properties_count!!}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Last Successful Alarms Scan:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!! mainService.legibleDate(formData.last_alarms_scan) !!}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Last Successful Properties Scan:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!! mainService.legibleDate(formData.last_properties_scan) !!}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Last Failed Alarms Scan:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!! mainService.legibleDate(formData.last_failed_alarms_scan) !!}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-12 col-md-5">Last Failed Properties Scan:</label>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                {!! mainService.legibleDate(formData.last_failed_properties_scan) !!}
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-12 col-md-5">All times listed for:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7">
+              {!! formData.timeZone !!}
+            </div>
+          </div>
+          <div class="form-group" ng-show="formData.firmware">
+            <label class="control-label col-xs-12 col-md-5">Firmware:</label>
+            <div class="col-xs-12 col-sm-6 col-md-7">
+              {!!formData.firmware!!}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>
+</div>

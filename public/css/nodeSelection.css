@@ -1,0 +1,224 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 7, 2014, 8:38:55 AM
+    Author     : joseph.nagel
+*/
+
+#nodeSelectionContainer {
+
+    margin-top: 5px;
+    position: relative;
+
+}
+
+ul {
+    list-style-type: none;
+}
+
+.iconRadio {
+    /* background: url(../img/icons/minor_folder.png) no-repeat; */
+}
+
+.radio {
+    width: 44px;
+    min-width: 44px;
+    height: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.sev_critical_1 {
+    background: url(../img/icons/critical_leaf_folder.png) no-repeat center center;
+}
+
+.sev_critical_1.hasChildren {
+    background: url(../img/icons/critical_branch_folder.png) no-repeat center center;
+}
+
+.sev_major_1 {
+    background: url(../img/icons/major_leaf_folder.png) no-repeat center center;
+}
+
+.sev_major_1.hasChildren {
+    background: url(../img/icons/major_branch_folder.png) no-repeat center center;
+}
+
+.sev_minor_1 {
+    background: url(../img/icons/minor_leaf_folder.png) no-repeat center center;
+}
+
+.sev_minor_1.hasChildren {
+    background: url(../img/icons/minor_branch_folder.png) no-repeat center center;
+}
+
+.sev_warning_1 {
+    background: url(../img/icons/warning_leaf_folder.png) no-repeat center center;
+}
+
+.sev_warning_1.hasChildren {
+    background: url(../img/icons/warning_branch_folder.png) no-repeat center center;
+}
+
+.sev_clear_1 {
+    background: url(../img/icons/clear_leaf_folder.png) no-repeat center center;
+}
+
+.sev_clear_1.hasChildren {
+    background: url(../img/icons/clear_branch_folder.png) no-repeat center center;
+}
+
+.sev_critical_ {
+    background: url(../img/icons/critical_leaf_device.png) no-repeat center center;
+}
+
+.sev_critical_.hasChildren {
+    background: url(../img/icons/critical_branch_device.png) no-repeat center center;
+}
+
+.sev_major_ {
+    background: url(../img/icons/major_leaf_device.png) no-repeat center center;
+}
+
+.sev_major_.hasChildren {
+    background: url(../img/icons/major_branch_device.png) no-repeat center center;
+}
+
+.sev_minor_ {
+    background: url(../img/icons/minor_leaf_device.png) no-repeat center center;
+}
+
+.sev_minor_.hasChildren {
+    background: url(../img/icons/minor_branch_device.png) no-repeat center center;
+}
+
+.sev_warning_ {
+    background: url(../img/icons/warning_leaf_device.png) no-repeat center center;
+}
+
+.sev_warning_.hasChildren {
+    background: url(../img/icons/warning_branch_device.png) no-repeat center center;
+}
+
+.sev_clear_ {
+    background: url(../img/icons/clear_leaf_device.png) no-repeat center center;
+}
+
+.sev_clear_.hasChildren {
+    background: url(../img/icons/clear_branch_device.png) no-repeat center center;
+}
+
+.sev_loading {
+    background: url(../img/icons/node_loading.gif) no-repeat center center;
+}
+
+/* http://stackoverflow.com/questions/1928991/minimum-sensible-button-size-on-iphone */
+.radio-checked {
+    width: 44px;
+    min-width: 44px;
+    height: 50px;
+    /* background: url(../img/icons/minor_folder.jpg) no-repeat center center;//url(http://cdn4.iconfinder.com/data/icons/fatcow/32x32_0160/bullet_green.png) no-repeat; */
+    background-color: #C1DCFC;
+    float: left;
+    display: block;
+
+}
+
+#radioDiv {
+    padding-right: 0;
+    padding-left: 15;
+}
+
+#linkDiv {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.childrenIndicator.hasChildren {
+    width: 23px;
+    height: 18px;
+    background: url(../img/icons/child_device.png) no-repeat center center;
+    position: absolute;
+    top: 26px;
+    left: 38px;
+    pointer-events: none;
+}
+
+.childrenIndicator1.hasChildren {
+    width: 19px;
+    height: 15px;
+    background: url(../img/icons/child_folder.png) no-repeat center center;
+    position: absolute;
+    top: 28px;
+    left: 41px;
+    pointer-events: none;
+}
+
+/*
+tree icon for both
+.childrenIndicator.hasChildren, .childrenIndicator1.hasChildren  {
+    width: 19px;
+    height: 19px;
+    background: url(../img/icons/child_tree.png) no-repeat center center;
+    position: absolute;
+    top: 28px;
+    left: 43px;
+    pointer-events:none;
+}
+*/
+.nodesTree {
+    width: 280px;
+    float: left;
+    margin-right: 15px;
+}
+
+.nodesTree #radioDiv {
+    float: left;
+    height: 50px;
+    margin-right: 5px;
+}
+
+.nodesTree.notCurrentNode #radioDiv {
+    background-color: #FFFFFF
+}
+
+.nodesTree .nodesTreeLinkContainer {
+    cursor: pointer;
+}
+
+.nodesTree.currentNode .nodesTreeLinkContainer {
+    background-color: #C1DCFC;
+}
+
+.nodesTree.notCurrentNode .nodesTreeLinkContainer {
+    background-color: #FFFFFF;
+}
+
+.nodesTree .nodesTreeLinkSubContainer {
+    display: table;
+    font-size: 100%;
+    height: 50px;
+    margin-left: 44px;
+}
+
+.nodesTree.currentNode .nodesTreeLinkSubContainer {
+    cursor: pointer;
+    background-color: #C1DCFC;
+}
+
+.nodesTree.notCurrentNode .nodesTreeLinkSubContainer {
+    background-color: #FFFFFF;
+}
+
+.nodesTree .nodesTreeLinkSubContainer2 {
+    vertical-align: middle;
+    display: table-cell;
+    word-break: break-all;
+}
+
+.nodesTree.notSelected .nodesTreeLinkSubContainer2 {
+    width: 100%;
+}

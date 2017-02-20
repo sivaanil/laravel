@@ -1,0 +1,5 @@
+,DEVICE NAME,DEVICE TYPE ID,IP ADDRESS,USERNAME,PASSWORD,SNMP VERSION,SNMP READ,SNMP WRITE,HTTP,HTTPS,SNMP,SCAN INTERVAL
+Valid Information,ADRF test,736,166.158.79.61,ksmoibs,ksmokc,2c,public,private,80,,161,15
+Invalid Information,broken,1082,192.111.11.1,user,pass,2c,private,public,40,,80,15
+No Name Required,,736,166.158.79.61,ksmoibs,ksmokc,2c,public,private,80,,161,15
+Slow Build,CsquaredTestSlowBuild,106,166.245.56.70,admin,CMA2012,2c,public,private,8201,,8261,15

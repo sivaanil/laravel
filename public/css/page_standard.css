@@ -1,0 +1,428 @@
+
+#breadcrumb {
+    margin: 15px;
+    text-align: center;
+}
+
+body {
+    font-family: Verdana, Helvetica, Arial;
+    font-size: 13px;
+}
+
+a img {
+    border: none;
+}
+
+a {
+    color: #0000FF;
+}
+
+.clear {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+#container {
+    width: 480px;
+    margin: 0 auto;
+    background-color: #FFF;
+    padding: 20px 40px;
+    border: solid 1px black;
+    margin-top: 20px;
+}
+
+#splitter #content {
+    overflow-y: auto ! important;
+}
+
+#flash_notice, #flash_error {
+    padding: 5px 8px;
+    margin: 10px 0;
+}
+
+#flash_notice {
+    background-color: #CFC;
+    border: solid 1px #6C6;
+}
+
+#flash_error {
+    background-color: #FCC;
+    border: solid 1px #C66;
+}
+
+#nav {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto 0;
+    display: block;
+    background-color: #1F3D63;
+}
+
+#nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+#nav ul li {
+    display: inline;
+}
+
+#nav li a {
+    float: left;
+    display: block;
+    padding: 12px 12px;
+    color: #fff;
+    border-right: 1px solid #fff;
+    text-decoration: none;
+}
+
+#nav li a:hover {
+    color: #236BB2;
+}
+
+input[type=text],
+input[type=password],
+textarea {
+    color: #888;
+    font: 12px Helvetica, Arial, sans-serif;
+}
+
+#login-box {
+    color: #0b333c;
+    width: 454px;
+    height: 414px;
+    position: relative;
+    margin: 0 auto;
+    padding-top: 75px;
+    background-image: url('../img/img/login_background.png');
+    font-family: Verdana, Helvetica, Arial, sans-serif ! important;
+}
+
+#login-box td {
+    padding: 4px 8px 4px 8px;
+}
+
+#login-box td label {
+    font-size: 11px;
+    margin-bottom: 3px;
+}
+
+#login-box #banner {
+    margin-bottom: 15px;
+}
+
+#login-box #flash_error {
+    width: 300px;
+    margin: 0 auto 10px;
+}
+
+#login-box input {
+    min-width: 150px ! important;
+    width: 150px ! important;
+    padding: 3px 3px 3px 3px;
+    font-weight: bold;
+}
+
+#login-box-inner {
+    max-width: 300px;
+    display: inline-block;
+}
+
+#login-button {
+    color: #FFF;
+    position: absolute;
+    right: 21px;
+    bottom: 24px;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px 3px 7px;
+    border-radius: 5px;
+}
+
+#login-button:hover {
+    color: #000;
+    cursor: pointer;
+    background-color: #b2e1ff;
+}
+
+#login-button img {
+    margin-right: 1px;
+}
+
+#login-help-button {
+    color: #FFF;
+    position: absolute;
+    left: 21px;
+    bottom: 24px;
+    font-size: 11px;
+    font-weight: normal;
+    padding: 3px 10px 3px 7px;
+    border-radius: 5px;
+}
+
+#login-help-button:hover {
+    color: #000;
+    cursor: pointer;
+    background-color: #b2e1ff;
+}
+
+#login-credentials-label {
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#login-box-wrapper {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+
+#forgot-password-link {
+    position: absolute;
+    left: 31px;
+    bottom: 67px;
+    font-size: 11px;
+    text-decoration: underline;
+}
+
+.c2-dialog {
+    border: 6px solid #0c59af ! important;
+    position: relative;
+}
+.c2-dialog .jqx-window-content {
+    margin-bottom: 35px;
+}
+
+.c2-dialog .jqx-window-header {
+    background: #0c59af ! important;
+    color: #FFF ! important;
+    padding-left: 10px ! important;
+}
+.c2-dialog .dialog-footer-buttons {
+    background: #0c59af ! important;
+    color: #FFF;
+    position: absolute ! important;
+    bottom: 0px ! important;
+    left: 0px ! important;
+    width: 100%;
+    height: 35px;
+}
+.c2-dialog .dialog-footer-buttons div {
+    float: right;
+    font-weight: bold;
+    margin-left: 12px;
+    margin-top: 5px;
+    padding: 5px 5px 5px 5px;
+}
+
+.c2-dialog .dialog-footer-buttons div:hover {
+    background: #b2e1ff ! important;
+    color: #2b333c;
+    cursor: pointer;
+}
+
+.c2-dialog .save-button {
+    background-image: url('../img/icons/disk.png');
+}
+
+.c2-wizard-container {
+    border: 6px solid #0c59af ! important;
+    position: relative;
+}
+.c2-wizard-container .jqx-window-content {
+    margin-bottom: 2px;
+}
+
+.c2-wizard-container .jqx-window-header {
+    background: #0c59af ! important;
+    color: #FFF ! important;
+    padding-left: 10px ! important;
+}
+
+.buttons-right-aligned button {
+    float: right;
+    margin-left: 6px;
+}
+.buttons-right-aligned .form-group {
+    margin-right: -25px ! important;
+}
+
+.form-group div {
+    padding-top: 6px;
+}
+.form-group div input, .form-group div button {
+    margin-top: -6px;
+}
+
+.jqx-grid-toolbar h4 {
+    padding-left: 12px;
+    top: -3px;
+    position: relative;
+}
+
+.title-bar {
+    width: 99%;
+    height: 33px;
+    background-color: #1c59ae;
+    color: #FFFFFF;
+    font-family: Verdana;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    border-bottom: 2px solid #ddd ! important;
+    margin-bottom: 10px;
+}
+.title-bar h4 {
+  padding-top: 6px;
+  padding-left: 10px;
+}
+
+.header-logo-sitegate {
+    left: 7px;
+    margin-bottom: -1px;
+}
+
+.btn-save, .btn-cancel, .btn-reboot, .btn-validation-report, .btn-factory-reset, .btn-add-device, .btn-scan-device, .btn-rebuild-device, .btn-remove-device, .btn-launch-web-interface, .btn-launch-web-interface-group-disabled, .btn-launch-web-interface-sitegate-disabled {
+    background-position: 7px center;
+    background-repeat: no-repeat;
+    padding-left: 30px ! important;
+}
+
+.btn-reboot, .btn-factory-reset, .btn-validation-report, .btn-add-device, .btn-scan-device, .btn-rebuild-device, .btn-remove-device, .btn-launch-web-interface,
+.btn-launch-web-interface-group-disabled, .btn-launch-web-interface-sitegate-disabled {
+    font-size: 11px ! important;
+}
+
+.btn-save {
+    background-image: url('../img/icons/disk.png') ! important;
+}
+
+.btn-cancel {
+    background-image: url('../img/icons/cancel.png') ! important;
+}
+
+.btn-reboot {
+    background-image: url('../img/icons/reboot.png') ! important;
+}
+
+.btn-factory-reset {
+    background-image: url('../img/icons/exclamation.png') ! important;
+}
+
+.btn-validation-report {
+    background-image: url('../img/icons/page_excel.png') ! important;
+}
+
+.btn-add-device {
+    background-image: url('../img/icons/drive_add.png') ! important;
+}
+
+.btn-scan-device {
+    background-image: url('../img/icons/drive_magnify.png') ! important;
+}
+
+.btn-rebuild-device {
+    background-image: url('../img/icons/wrench.png') ! important;
+}
+
+.btn-remove-device {
+    background-image: url('../img/icons/delete.png') ! important;
+}
+
+.btn-launch-web-interface {
+    background-image: url('../img/icons/computer_go.png') ! important;
+}
+
+.btn-launch-web-interface-group-disabled, .btn-launch-web-interface-sitegate-disabled {
+    background-image: url('../img/icons/computer_go.png') ! important;
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.tooltip {
+    position: fixed;
+    pointer-events: none ! important;
+}
+
+.tooltip.top .tooltip-inner, .tooltip.left .tooltip-inner, .tooltip.right .tooltip-inner, .tooltip.bottom .tooltip-inner {
+    background-color:#ffffce;
+    color: #0b333c;
+    font-size: 10px;
+    font-weight: normal;
+    background-color: rgb(20,20,20,); /* Needed for IEs */
+    -moz-box-shadow: 0px 1px 5px 1px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 1px 5px 1px rgba(0,0,0,0.4);
+    box-shadow: 0px 1px 5px 1px rgba(0,0,0,0.4);
+    zoom: 1;
+    z-index: 20000;
+}
+
+.tooltip.top .tooltip-arrow {
+    /* disabling arrows due to rendering/overlap issues */
+    display: none ! important;
+    border-top-color:#ffffce;
+}
+
+.tooltip.left .tooltip-arrow {
+    /* disabling arrows due to rendering/overlap issues */
+    display: none ! important;
+    border-left-color:#ffffce;
+}
+
+.tooltip.right .tooltip-arrow {
+    /* disabling arrows due to rendering/overlap issues */
+    display: none ! important;
+    border-right-color:#ffffce;
+}
+
+.tooltip.bottom .tooltip-arrow {
+    /* disabling arrows due to rendering/overlap issues */
+    display: none ! important;
+    border-bottom-color:#ffffce;
+}
+
+.tooltip.in {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+/* Resizes for smaller/older mobile devices */
+@media only screen and (max-width: 460px) {
+    #login-box {
+        width: 320px;
+        height: 342px;
+        background-image: url('../img/img/login_background_mobile.png');
+        padding-top: 50px;
+    }
+
+    #login-box #banner {
+        width: 260px;
+        height: 61px;
+    }
+
+    #login-button {
+        right: 19px;
+        bottom: 13px;
+    }
+
+    #login-help-button {
+        left: 16px;
+        bottom: 14px;
+    }
+
+    #forgot-password-link {
+        left: 27px;
+        bottom: 50px;
+    }
+
+    #login-box #flash_error {
+        width: 250px;
+        margin: -5px auto 8px;
+    }
+}

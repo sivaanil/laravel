@@ -1,0 +1,398 @@
+/* 
+    Document   : networkTree
+    Created on : Aug 19, 2014, 10:31:10 AM
+    Author     : akhand.singh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root {
+    display: block;
+}
+
+/* tree customization */
+.jqx-tree-item-arrow-collapse, .jqx-tree-item-arrow-collapse-hover {
+    background-image: url(../../../img/icons/expand.png) !important;
+}
+
+.jqx-tree-item-arrow-expand, .jqx-tree-item-arrow-expand-hover {
+    background-image: url(../../../img/icons/collapse.png) !important;
+}
+
+.jqx-tree-item-ul {
+    width: 100%;
+}
+
+.jqx-tree-item-li {
+    width: 100%;
+}
+
+/* menu customization */
+
+.jqx-menu-vertical {
+    background-color: #ffffff;
+}
+
+.jqx-menu-horizontal {
+    background-color: #ffffff;
+}
+
+.treeheader {
+
+    width: 100%;
+    min-width: 150px;
+    height: 20px;
+    background: #1C59AE;
+    padding-top: 3px;
+    padding-left: 3px;
+}
+
+.treeheader span {
+    display: table-cell;
+    color: white;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+    vertical-align: middle;
+}
+
+#scrollableTree {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100px
+}
+
+#miscContainer {
+    margin-top: 35px;
+    margin-left: 5px;
+}
+
+#buttonContainer {
+    margin-left: 5px;
+}
+
+.nodeButtonGroup {
+    display: inline-block;
+    text-align: center;
+    margin-top: 5px;
+    margin-right: 8px;
+}
+
+.nodeButtonGroup label {
+    display: block;
+    font-size: 8px;
+}
+
+.generalButton {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+
+    width: 80px;
+
+    outline: none;
+    border: 1px solid transparent;
+    padding: 3px;
+    text-align: center;
+    vertical-align: central;
+    margin: 0 0 0 0;
+    cursor: default;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#f8f8f8), to(#eaeaea));
+    background: -moz-linear-gradient(100% 100% 90deg, #eaeaea, #f8f8f8);
+    background: -ms-linear-gradient(top, #f8f8f8 0%, #eaeaea 100%);
+    background: linear-gradient(top, #f8f8f8 0%, #eaeaea 100%);
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -ms-touch-action: none;
+    zoom: 1;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -webkit-appearance: none;
+    -webkit-background-clip: padding-box;
+    direction: ltr;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-family: Verdana, Arial, sans-serif;
+    font-style: normal;
+    font-size: 13px;
+    border-color: #aaa;
+    background: #efefef;
+}
+
+.nodeButton {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+
+    width: 40px;
+
+    outline: none;
+    border: 1px solid transparent;
+    padding: 3px;
+    text-align: center;
+    vertical-align: central;
+    margin: 0 0 0 0;
+    cursor: default;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#f8f8f8), to(#eaeaea));
+    background: -moz-linear-gradient(100% 100% 90deg, #eaeaea, #f8f8f8);
+    background: -ms-linear-gradient(top, #f8f8f8 0%, #eaeaea 100%);
+    background: linear-gradient(top, #f8f8f8 0%, #eaeaea 100%);
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -ms-touch-action: none;
+    zoom: 1;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -webkit-appearance: none;
+    -webkit-background-clip: padding-box;
+    direction: ltr;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-family: Verdana, Arial, sans-serif;
+    font-style: normal;
+    font-size: 13px;
+    border-color: #aaa;
+    background: #efefef;
+
+}
+
+.network-tree-action-buttons {
+    display: none;
+}
+
+.network-tree-action-buttons button {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.network-tree-action-buttons img {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+/*Device Specific CSS*/
+
+.addDevice {
+    background-image: url("../../../img/icons/switch.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    content: url("../../../img/icons/switch.png");
+}
+
+.scanDevice {
+    background-image: url("../../../img/icons/switch.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    content: url("../../../img/icons/switch.png");
+}
+
+/*Group Specific CSS*/
+
+.addGroup {
+    background-image: url("../../../img/icons/folder.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    content: url("../../../img/icons/folder.png");
+}
+
+/*Node Specific CSS */
+
+.expandNode {
+    background-image: url("../../../img/icons/expand.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    font-size: 10px;
+    font-weight: bold;
+    content: url("../../../img/icons/expand.png");
+}
+
+.collapseNode {
+    background-image: url("../../../img/icons/collapse.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    font-size: 10px;
+    font-weight: bold;
+    content: url("../../../img/icons/collapse.png");
+}
+
+.colorLegend {
+    background-image: url("../../../img/icons/color_wheel.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    content: url("../../../img/icons/color_wheel.png");
+}
+
+.moveNode {
+    background-image: url("../../../img/icons/table_gear.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    content: url("../../../img/icons/table_gear.png");
+}
+
+.removeNode {
+    background-image: url("../../../img/icons/delete.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    content: url("../../../img/icons/delete.png");
+}
+
+.editNode {
+    background-image: url("../../../img/icons/rename.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    content: url("../../../img/icons/rename.png");
+}
+
+input.rounded {
+
+    border: 1px solid #ccc;
+
+    /* Safari 5, Chrome support border-radius without vendor prefix.
+     * FF 3.0/3.5/3.6, Mobile Safari 4.0.4 require vendor prefix.
+     * No support in Safari 3/4, IE 6/7/8, Opera 10.0.
+     */
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+
+    /* Chrome, FF 4.0 support box-shadow without vendor prefix.
+     * Safari 3/4/5 and FF 3.5/3.6 require vendor prefix.
+     * No support in FF 3.0, IE 6/7/8, Opera 10.0, iPhone 3.
+     * change the offsets, blur and color to suit your design.
+     */
+    -moz-box-shadow: 2px 2px 3px #666;
+    -webkit-box-shadow: 2px 2px 3px #666;
+    box-shadow: 2px 2px 3px #666;
+
+    /* using a bigger font for demo purposes so the box isn't too small */
+    font-size: 20px;
+
+    /* with a big radius/font there needs to be padding left and right
+     * otherwise the text is too close to the radius.
+     * on a smaller radius/font it may not be necessary
+     */
+    padding: 4px 7px;
+
+    /* only needed for webkit browsers which show a rectangular outline;
+     * others do not do outline when radius used.
+     * android browser still displays a big outline
+     */
+    outline: 0;
+
+    /* this is needed for iOS devices otherwise a shadow/line appears at the
+     * top of the input. depending on the ratio of radius to height it will
+     * go all the way across the full width of the input and look really messy.
+     * ensure the radius is no more than half the full height of the input,
+     * and the following is set, and everything will render well in iOS.
+     */
+    -webkit-appearance: none;
+
+}
+
+input.rounded:focus {
+
+    /* supported IE8+ and all other browsers tested.
+     * optional, but gives the input focues when selected.
+     * change to a color that suits your design.
+     */
+    border-color: #339933;
+
+}
+
+networkTree {
+    /* prevent user selection */
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    /* default */
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+}
+
+networkTree ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: none;
+    overflow: hidden;
+}
+
+networkTree li {
+    position: relative;
+    padding: 0 0 0 5px;
+    line-height: 20px;
+}
+
+networkTree li.tree-alarmDevice i.tree-head,
+networkTree li.tree-normalDevice i.tree-head,
+networkTree li.tree-criticalFolder i.tree-head,
+networkTree li.tree-majorFolder i.tree-head,
+networkTree li.tree-minorFolder i.tree-head,
+networkTree li.tree-warningFolder i.tree-head,
+networkTree li.tree-normalFolder i.tree-head {
+    display: inline;
+}
+
+networkTree li.tree-alarmDevice i.tree-node-head,
+networkTree li.tree-normalDevice i.tree-node-head,
+networkTree li.tree-criticalFolder i.tree-node-head,
+networkTree li.tree-majorFolder i.tree-node-head,
+networkTree li.tree-minorFolder i.tree-node-head,
+networkTree li.tree-warningFolder i.tree-node-head,
+networkTree li.tree-normalFolder i.tree-node-head {
+    display: inline;
+}
+
+networkTree li i {
+    cursor: pointer;
+}
+
+networkTree li .tree-label {
+    cursor: pointer;
+    display: inline;
+}
+
+networkTree.tree-classic li .tree-selected {
+    background-color: #aaddff;
+    font-weight: bold;
+}
+
+/*Custom*/
+
+networkTree.tree-classic li.tree-collapse i {
+    padding: 1px 10px;
+    background: url("/img/icons/collapse.png") no-repeat;
+}
+
+networkTree.tree-classic li.tree-expand i {
+    padding: 1px 10px;
+    background: url("/img/icons/expand.png") no-repeat;
+}
+
+networkTree.tree-classic li.tree-leaf i {
+    padding: 1px 10px;
+    background: none;
+}
+
+/* fixes the problem of the checkboxes not scrolling with the tree */
+.jqx-tree-dropdown-root[style] {
+    position: relative ! important;
+    left: 0px ! important;
+}
+
+.tree-status-Unreachable {
+    color: #990000;
+}
+.tree-status-Disabled {
+    color: #AAAAAA;
+}

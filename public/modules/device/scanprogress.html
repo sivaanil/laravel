@@ -1,0 +1,17 @@
+<div ng-submit="submitForm()"  ng-controller="formCtrl as form" data-url="/device" form-component>
+  <form class="form-horizontal" role="form" ng-controller="deviceCtrl as device" device-module>
+    <div class="container-fluid">
+      <h3 class="scan-device-message" style="font-size: 18px">Starting scan...</h3>
+      <div scan-progress></div>
+      <div class="dialog-footer-buttons">
+        <div class="cancel-scan-device-button" ng-click="cancelScan()">
+          <img src="./img/icons/cancel.png"> Cancel Scan
+        </div>
+        <div class="close-scan-device-button" ng-click="closeScanProgressWindow()" style="display: none;">
+          <img src="./img/icons/cancel.png"> Close
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>

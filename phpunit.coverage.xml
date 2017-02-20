@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="bootstrap/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="false">
+    <testsuites>
+        <testsuite name="Application Test Suite for SiteGate API">
+            <directory>./tests/api</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+    </php>
+    <filter>
+    	<whitelist>
+    		<directory suffix=".php">./app/Http</directory>
+    		<directory suffix=".php">./app/Models</directory>
+    		<directory suffix=".php">./app/Services</directory>
+    		<file></file>
+    	</whitelist>
+    </filter>
+    <logging>
+    	<log type="coverage-html" 
+    		target="../unified-unit-coverage" 
+    		charset="UTF-8" yui="true" 
+    		highlight="true" 
+    		lowUpperBound="60" 
+    		highLowerBound="90"
+    	/>
+    </logging>
+</phpunit>

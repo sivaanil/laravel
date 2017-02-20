@@ -1,0 +1,38 @@
+#contact-closure-grid {
+    width: 100%;
+    height: 100%;
+}
+
+#contact-closure-dialog-content div.row > label {
+    width: 150px;
+    margin-left: 15px;
+}
+
+#contact-closure-dialog-footer div.buttons {
+   float: right;
+}
+
+#contact-closure-dialog-footer .button {
+    padding: 5px 5px 5px 5px;
+}
+
+#contact-closure-dialog-footer div.buttons > .button:hover {
+    background: #b2e1ff ! important;
+    color: #2b333c;
+    cursor: pointer;
+
+}
+
+.toolbarButton {
+    float:right;
+}
+
+.toolbarButton:hover {
+    background: #b2e1ff ! important;
+    color: #2b333c;
+    cursor: pointer;
+}
+
+.cellimage {
+    padding-left:3px;
+}

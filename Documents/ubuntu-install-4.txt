@@ -1,0 +1,239 @@
+///Start of Patches
+
+sudo apt-get update
+sudo apt-get install openssh-server
+sudo apt-get purge biosdevname 
+sudo update-initramfs -u
+
+// Update grub's 00_header to solve "Disk filter writes are not supported" error on boot
+// http://askubuntu.com/questions/468466/why-this-occurs-error-diskfilter-writes-are-not-supported
+wget https://gist.githubusercontent.com/rarylson/da6b77ad6edde25529b2/raw/99f266a10e663e1829efc25eca6eddb9412c6fdc/00_header_patched
+sudo mv /etc/grub.d/00_header /etc/grub.d/00_header.orig
+sudo mv 00_header_patched /etc/grub.d/00_header
+sudo chmod -x /etc/grub.d/00_header.orig
+sudo chmod +x /etc/grub.d/00_header
+sudo update-grub
+
+///End of Patches
+
+sudo grub-install /dev/sda
+sudo grub-install /dev/sdb
+sudo update-grub /dev/sda
+sudo update-grub /dev/sdb
+
+sudo nano /etc/ssh/sshd_config 
+	//add to bottom
+	UseDNS no
+
+sudo apt-get install subversion
+sudo svn co http://192.168.11.226/siteportal/branches/unified-sitegate/sys-files/ ~/sys-files
+sudo bash ~/sys-files/install-packages.sh
+   when prompted, set the MySQL root password to our root password
+
+sudo pecl install pecl_http-1.7.6
+//Answer all with defaults.
+	
+sudo pear install net_ping auth_sasl mail net_smtp mail_mime
+
+sudo nano +349 /usr/share/php/Mail/smtp.php 
+//Remove & from new.
+
+sudo nano /etc/apache2/apache2.conf
+	//add to top
+ServerName	localhost
+
+//update the following values in 
+sudo nano /etc/php5/cli/php.ini
+  max_execution_time = 300
+  memory_limit = 1024M
+  include_path = ".:/usr/share/php:/var/www:/usr/share/php:/usr/share/php/Net"
+  //remove ;
+  extension=http.so
+  //add the above line to the bottom of the "dynamic extensions" section   
+  upload_max_filesize = 1024M
+  post_max_size = 1024M
+
+//update the following values in /etc/php5/apache2/php.ini
+sudo nano /etc/php5/apache2/php.ini
+  max_execution_time = 300
+  memory_limit = 1024M
+  include_path = ".:/usr/share/php:/var/www:/usr/share/php:/usr/share/php/Net"
+  //remove ;
+  extension=http.so
+  //add the above line to the bottom of the "dynamic extensions" section   
+  upload_max_filesize = 1024M
+  post_max_size = 1024M
+  
+sudo mkdir -p ~/sites/unified
+sudo svn co --username=_____________ http://192.168.11.226/siteportal/release-candidates/sitegate-2.1-RC4-ENC ~/sites/unified/
+
+sudo mkdir -p /var/www/cswapi_unified
+sudo chown c2-maintenance:c2-maintenance /var/www/cswapi_unified/
+sudo svn co --username=_____________ http://192.168.11.226/siteportal/release-candidates/cswapi-sitegate-7.2-RC4-ENC /var/www/cswapi_unified
+
+sudo mkdir -p /var/csquared/listener
+sudo chown c2-maintenance:c2-maintenance /var/csquared/listener/
+sudo svn co --username=_____________ http://192.168.11.226/siteportal/branches/sitegate-listener /var/csquared/listener/
+
+sudo scp -r _____________@192.168.11.230:/var/www/Zend /var/www
+
+sudo bash ~/sites/unified/sys-files/set-permissions.sh
+
+// edit ~/sites/unified/.env and set timezone.
+nano ~/sites/unified/.env
+// edit the TIMEZONE line. TIMEZONE must remain upper case.
+
+Use one of these for US.
+
+America/New_York
+America/Chicago
+America/Denver
+America/Los_Angeles
+
+//The timezone should be the same as that set during installation. If you want to change that setting:
+sudo dpkg-reconfigure tzdata
+
+//MySQL needs root % user:
+mysql -u root -p mysql -e"update user set host='%' where host='sitegate';"
+mysql -u root -p mysql -e"grant all on *.* to 'root'@'%' identified by 'password' with grant option;"
+
+sudo nano /etc/mysql/my.cnf
+	bind-address            = 0.0.0.0
+	innodb_buffer_pool_size = 1024M 			
+							//(or 2048M for a 7000) -*you must add this line
+	
+
+sudo service mysql restart
+ 
+mysql -u root -p -e"create database cswapi_unified;"
+sudo gunzip ~/sys-files/template_7_2_RC8_sitegate.sql.gz
+mysql -u root -p cswapi_unified < ~/sys-files/template_7_2_RC8_sitegate.sql
+
+cd /etc/apache2
+sudo mkdir ssl
+cd ssl
+sudo openssl req -new -x509 -nodes -days 3650 -out server.crt -keyout server.key
+  When prompted:
+	Country: US
+	Organization Name: C Squared Systems L.L.C.
+	Common Name: sitegate
+
+sudo a2ensite 000-default.conf
+sudo a2ensite default-ssl.conf
+ 
+//Install ioncube
+  cd /home/c2-maintenance/
+  sudo wget http://downloads2.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
+
+  sudo tar -xvf ioncube_loaders_lin_x86-64.tar.gz
+  sudo mv /home/c2-maintenance/ioncube /var/www
+
+  sudo cp /var/www/ioncube/ioncube_loader_lin_5.5.so /usr/lib/php5/20121212
+
+ //Add the following lines at the very end of each file
+    sudo nano /etc/php5/cli/php.ini
+      zend_extension = /usr/lib/php5/20121212/ioncube_loader_lin_5.5.so
+    sudo nano /etc/php5/apache2/php.ini
+       zend_extension = /usr/lib/php5/20121212/ioncube_loader_lin_5.5.so
+
+//Copy ...
+sudo cp ~/sys-files/etc/apache2/sites-available/*.conf /etc/apache2/sites-available/
+sudo cp ~/sys-files/etc/network/interfaces /etc/network/interfaces
+sudo cp ~/sys-files/etc/network/interfaces.d/*.conf /etc/network/interfaces.d/
+
+sudo chmod 644 /etc/network/interfaces
+sudo chmod 644 /etc/network/interfaces.d/*.conf
+
+/////Edit /etc/network/interfaces.d/wan.conf to change IP address back to DHCP given
+sudo nano /etc/network/interfaces.d/wan.conf
+
+sudo adduser c2-guest
+  password: e4MNW7Gl,7=u&13943;Q
+  leave other fields blank
+
+  
+sudo passwd -l c2-guest
+
+sudo ln -s /var/lib/guacamole/guacamole.war /var/lib/tomcat7/webapps
+
+Wait about one minute to allow for guacamole.war to expand.
+ls -l /var/lib/tomcat7/webapps
+should show a guacamole directory beside the guacamole.war symlink.
+
+sudo cp ~/sites/unified/sys-files/var/lib/tomcat7/webapps/guacamole/WEB-INF/lib/guacamole-auth-hmac-1.0-SNAPSHOT.jar /var/lib/tomcat7/webapps/guacamole/WEB-INF/lib/guacamole-auth-hmac-1.0-SNAPSHOT.jar
+sudo chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/guacamole/WEB-INF/lib/guacamole-auth-hmac-1.0-SNAPSHOT.jar
+
+sudo cp ~/sys-files/etc/guacamole/guacamole.properties /etc/guacamole/guacamole.properties
+
+sudo ln -s /etc/guacamole/guacamole.properties /usr/share/tomcat7/lib/
+
+sudo cp ~/sites/unified/sys-files/etc/supervisor/supervisord.conf /etc/supervisor/
+sudo cp ~/sites/unified/sys-files/etc/supervisor/conf.d/*.conf /etc/supervisor/conf.d/
+
+cd ~/sites/unified/app/System/
+chmod +x *.sh
+sudo ./build-wrapper.sh
+
+sudo cp ~/sys-files/c2-guest-home.tar.gz /root/
+
+sudo bash ~/sys-files/create-dirs.sh
+
+sudo mkdir -p ~/mibs_tmp
+sudo svn co --username=_____________ http://192.168.11.226/siteportal/mibs ~/mibs_tmp
+sudo bash ~/mibs_tmp/mibs_install.sh
+
+//install Trap Handler
+cd ~
+sudo svn co http://192.168.11.226/siteportal/snmptrap/
+sudo cp ~/snmptrap/trapControl.php /usr/local/bin/trapControl.php
+sudo cp ~/snmptrap/trapToDatabase.sh /usr/local/bin/trapToDatabase.sh
+cd ~/snmptrap/
+
+sudo bash install.sh
+	//enter for defaults and don't forget to type "done" at the end
+	
+//Also, there is a string array called environments in /usr/local/bin/trapControl.php which needs to be changed
+  sudo nano /usr/local/bin/trapControl.php
+    $environments = array("/var/www/cswapi_unified/networking/traps/MainHandler.php");
+
+Run these commands:
+ sudo perl -i -p -e "s/TRAPDRUN\=no/TRAPDRUN\=yes/g" /etc/default/snmpd
+ sudo perl -i -p -e "s/export MIBS\=/#export MIBS\=/g" /etc/default/snmpd
+
+sudo /etc/init.d/snmpd restart	
+
+// this is a way is testing the mibs.
+sudo more /etc/snmp/snmpd.conf                              
+// note the community string for com2sec readonly. It is probably 2Y2LHTZP31
+// insert this command and run.
+snmpget -v 2c -c 2Y2LHTZP31 127.0.0.1 SNMPv2-MIB::sysDescr.0
+// this should reply with a single line like this following. Error message means that the mibs install has a problem.
+SNMPv2-MIB::sysDescr.0 = STRING: Linux SiteGate 3.16.0-45-generic #60~14.04.1-Ubuntu SMP Fri Jul 24 21:16:23 UTC 2015 x86_64
+
+sudo /etc/init.d/apache2 restart 	
+sudo rm -R ~/sys-files/
+
+sudo ~/sites/unified/app/System/reset-guest.sh
+
+sudo php /home/c2-maintenance/sites/unified/artisan csquared:resetguest
+
+sudo crontab -e
+//Add this one line to crontab
+* * * * * /usr/bin/php /home/c2-maintenance/sites/unified/artisan schedule:run > /dev/null 2>&1
+
+mysql -u root -p mysql -e"UPDATE cswapi_unified.css_general_config SET var1 = 1 WHERE setting_name = 'enable_scan';"
+ 
+sudo ufw enable
+//Answer y to prompt.
+sudo ufw allow 22
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw allow 162
+
+sudo shutdown -r now 
+
+//install grub on both drives and update
+sudo grub-install /dev/sda
+sudo grub-install /dev/sdb
+sudo update-grub /dev/sda
+sudo update-grub /dev/sdb

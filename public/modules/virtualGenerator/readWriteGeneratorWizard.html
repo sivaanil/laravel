@@ -1,0 +1,40 @@
+<div ng-submit="submitForm()"  ng-controller="formCtrl as form" data-url="/virtualDevice" form-component>
+  <form class="form-horizontal" role="form" ng-controller="virtualGeneratorCtrl as virtualGenerator" virtual-generator-module>
+    <div id="wizard" class="swMain">
+        <ul>
+            <li><a href="#step-1">
+            <span class="stepDesc">
+                {!!virtualLocalization.generatorStep1!!}
+            </span>
+            </a></li>
+            <li><a href="#step-2">
+            <span class="stepDesc">
+               {!!virtualLocalization.generatorStep3!!}
+            </span>
+            </a></li>
+            <li><a href="#step-3">
+            <span class="stepDesc">
+               {!!virtualLocalization.generatorStep4!!}
+            </span>
+            </a></li>
+        </ul>
+
+        <div id="step-1">
+            <contact-closure-step ng-controller="contactClosureCtrl as contactClosure" virtual-generator-module></contact-closure-step>
+        </div>
+        
+        <div id="step-2">
+            <relay-control-step ng-controller="relayControlCtrl as relayControl" virtual-generator-module></relay-control-step>
+        </div>
+
+        <div id="step-3" ng-controller="generatorSummaryCtrl as generatorSummary" virtual-generator-module>
+            <div class="col-xs-12 form-section">
+                <h2 class="StepTitle">{!!virtualLocalization.summary!!}</h2>
+                <main-device-summary></main-device-summary>    
+                <contact-closure-summary></contact-closure-summary>
+                <relay-control-summary></relay-control-summary> 
+            </div>
+        </div>
+    </div>
+  </form>
+</div>

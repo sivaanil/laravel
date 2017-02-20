@@ -1,0 +1,451 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 15, 2014, 11:44:05 AM
+    Author     : joseph.nagel
+*/
+
+.available-columns-list, .selected-columns-list {
+    list-style: none;
+    height: 160px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: 1px solid #AAA;
+    width: 150px;
+    padding-left: 0px;
+    font-size: 13px;
+}
+
+.selected-columns-list {
+    width: 200px;
+}
+
+.available-columns-list li, .selected-columns-list li {
+    border: 1px solid #EEE;
+    background-color: #EEE;
+    padding: 2px 4px 2px 4px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.available-columns-list li.selected, .selected-columns-list li.selected {
+    background-color: #CCC;
+    border: 1px solid #AAA;
+}
+
+.available-columns, .selected-columns, .select-buttons, .reorder-buttons {
+    float: left;
+}
+
+.available-columns {
+    margin-left: 10px;
+}
+
+.available-columns h3, .selected-columns h3 {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.select-buttons, .reorder-buttons {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+}
+
+.reorder-buttons {
+    margin-right: -5px;
+}
+
+.select-button-add, .select-button-remove, .reorder-button-up, .reorder-button-down {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border: 1px solid #CCC;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.select-button-add {
+    background-image: url('../../../css/styles/images/icon-right.png');
+}
+
+.select-button-remove {
+    background-image: url('../../../css/styles/images/icon-left.png');
+}
+
+.reorder-button-up {
+    background-image: url('../../../css/styles/images/icon-up.png');
+}
+
+.reorder-button-down {
+    background-image: url('../../../css/styles/images/icon-down.png');
+}
+
+.column-size-increase, .column-size-decrease {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border: 1px solid #CCC;
+    width: 24px;
+    height: 21px;
+    margin-top: -3px;
+    padding-top: 1px;
+    cursor: pointer;
+    float: right;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+}
+
+.selected .column-size-increase, .selected .column-size-decrease {
+    border: 1px solid #AAA;
+}
+
+.column-size-decrease {
+    /* background-image: url('/css/styles/images/resize-column-smaller.png'); */
+}
+
+.column-size-increase {
+    /* background-image: url('/css/styles/images/resize-column-wider.png'); */
+}
+
+
+.jqx-grid-column-menubutton-custom.jqx-icon-arrow-down-custom:not(.jqx-grid-column-sortdescbutton-custom) {
+    background-image: url("../../../css/styles/images/filter.png");
+    background-position: 2px 6px;
+
+}
+
+.filtericon.jqx-widget-header-custom {
+    position: absolute;
+    right: -16px;
+    z-index: 100;
+    cursor: pointer;
+
+}
+
+.jqx-grid-column-filterbutton-custom.jqx-grid-column-filterbutton {
+    background-color: #F2DC63;
+    background-position: 2px 6px;
+    border-left: 1px solid #aaa;
+}
+
+.jqx-icon-arrow-up-custom.jqx-grid-column-sortascbutton-custom {
+    background-image: url("styles/images/smallsortascbutton.png");
+    position: absolute;
+    width: 17px;
+    right: -20px;
+    z-index: 110;
+    bottom: -2px;
+    pointer-events: none;
+}
+
+.jqx-icon-arrow-down-custom.jqx-grid-column-sortdescbutton-custom {
+    background-image: url("styles/images/smallsortdescbutton.png");
+    position: absolute;
+    width: 17px;
+    right: -20px;
+    z-index: 110;
+    bottom: -2px;
+    pointer-events: none;
+}
+
+.sortasc.jqx-widget-header.jqx-widget-header-custom {
+    z-index: -1;
+    background-color: transparent;
+    background-image: none;
+    pointer-events: none;
+}
+
+.sortdesc.jqx-widget-header.jqx-widget-header-custom {
+    z-index: -1;
+    background-color: transparent;
+    background-image: none;
+    pointer-events: none;
+}
+
+.jqx-grid-cell-custom.jqx-item-custom.menu-cell {
+    background-image: url(../../../css/styles/images/icon-menu-minimized.png);
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-size: auto auto, 100% 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.jqx-fill-state-pressed-custom.jqx-grid-cell-custom.jqx-item-custom.menu-cell {
+    background-image: url(../../../css/styles/images/icon-menu-minimized-white.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.jqx-grid-cell-custom.jqx-item-custom.notes-cell:not(.empty-cell) div {
+    background-image: url(../../../css/styles/images/info-notes.png);
+    background-repeat: no-repeat;
+    background-position: 50% 0% ! important;
+    cursor: pointer;
+}
+
+.jqx-grid-cell-custom.jqx-item-custom.notes-cell div {
+    font-size: 0px;
+    width: 100%;
+    height: 80%;
+}
+
+.jqx-grid-cell-custom.jqx-item-custom.notes-cell[style] {
+    margin-top: 0px ! important;
+    margin-bottom: 0px;
+}
+
+#notesWindowContent {
+    padding: 5px 5px 5px 5px;
+}
+
+/* adjustments below will need to be generalized for generic component */
+#alarmMenu {
+    margin-left: 10px;
+    margin-top: 3px;
+    margin-right: 4px;
+    padding-top: 0px;
+}
+
+#alarmTitleBar {
+}
+
+#alarmMenu input {
+    margin-left: 10px;
+    position: relative;
+    top: -2px;
+}
+
+#alarmMenu .jqx-menu-item-top.jqx-fill-state-hover {
+    background-color: transparent;
+}
+
+#alarmMenu .jqx-button {
+    padding: 4px 8px 4px 8px;
+    margin-top: -4px;
+}
+
+#alarmMenu .jqx-button:hover {
+    cursor: pointer;
+}
+
+#alarmTitleBar h4 {
+    padding-top: 6px;
+    padding-left: 10px;
+}
+
+#alarmMenu.jqx-menu-horizontal[style], #alarmMenu.jqx-menu-minimized[style] {
+    height: 30px ! important;
+    left: auto ! important;
+    right: 0px ! important;
+    top: -2px ! important;
+}
+
+#alarmMenu.jqx-menu-horizontal li[style] {
+    padding-top: 8px ! important;
+    padding-bottom: 8px ! important;
+    height: 16px ! important;
+    color: #FFF ! important;
+}
+
+.jqx-menu-item[style] {
+    background: #aaa ! important;
+}
+
+.jqx-menu-popup[style] {
+    color: #FFF ! important;
+}
+
+#menuWrapperalarmMenu[style] {
+    left: auto ! important;
+}
+
+#alarmsGrid_resizeCB_container {
+    padding-bottom: 2px;
+}
+
+#alarmsGrid_resizeCB {
+    position: relative ! important;
+    top: 3px ! important;
+    margin-top: -3px ! important;
+    margin-right: 5px ! important;
+    height: 14px;
+    width: 14px;
+}
+
+#alarmMenu .jqx-menu-minimized-button {
+    background-image: url('../../../img/icons/gear.png') ! important;
+    background-position: 50% 0% ! important;
+    float: right;
+    margin-top: 5px;
+}
+
+#alarmTabMenu .jqx-menu-minimized-button {
+    background-image: url('../../../img/icons/tabs.png') ! important;
+    background-position: 50% 0% ! important;
+    float: right;
+    margin-top: 5px;
+}
+
+.jqx-menu-minimized[style] {
+    position: absolute ! important;
+    right: 0px ! important;
+    left: auto ! important;
+}
+
+#jqxMainMenu.jqx-menu-minimized[style] {
+    margin-right: 48px;
+    width: 44px;
+}
+
+.jqx-menu-ul-minimized .jqx-menu-item-top[style] {
+    padding-top: 5px ! important;
+    padding-bottom: 5px ! important;
+    /* border-bottom: 1px solid #FFF ! important; */
+}
+
+.jqx-grid-pager .left-button, .jqx-grid-pager .right-button, .jqx-grid-pager .left-first-button, .jqx-grid-pager .right-last-button {
+    padding: 0px ! important;
+    float: left ! important;
+    margin: 2px 3px ! important;
+    cursor: pointer ! important;
+}
+
+.jqx-grid-pager .jqx-button[style] {
+    width: 13px ! important;
+    border: none ! important;
+    background: none ! important;
+}
+
+.jqx-grid-pager .jqx-button div[style] {
+    width: 13px ! important;
+    margin-left: 1px ! important;
+}
+
+.jqx-grid-pager .jqx-icon-arrow-left {
+    background-image: url('../../../css/styles/images/icon-left-large.png') ! important;
+    width: 13px ! important;
+    height: 16px ! important;
+}
+
+.jqx-grid-pager .jqx-icon-arrow-right {
+    background-image: url('../../../css/styles/images/icon-right-large.png') ! important;
+    width: 13px ! important;
+    height: 16px ! important;
+}
+
+.jqx-grid-pager .jqx-icon-arrow-first {
+    background-image: url('../../../css/styles/images/icon-first-large.png') ! important;
+    width: 13px ! important;
+    height: 16px ! important;
+}
+
+.jqx-grid-pager .jqx-icon-arrow-last {
+    background-image: url('../../../css/styles/images/icon-last-large.png') ! important;
+    width: 13px ! important;
+    height: 16px ! important;
+}
+
+.jqx-grid-pager .disabled .jqx-icon-arrow-last {
+    opacity: .4;
+    cursor: default;
+}
+
+.jqx-grid-pager .current-page-input {
+    padding: 0px;
+    float: left;
+    width: 29px;
+}
+
+.jqx-grid-pager .current-page-input input {
+    padding: 0px;
+    float: left;
+    width: 29px
+}
+
+.start-label, .end-label {
+    font-size: 11px;
+    margin: 2px 3px;
+    font-weight: bold;
+    float: left;
+}
+
+.end-label {
+}
+
+.end-label.page-count-loading {
+    background-image: url('../../../img/icons/loading.gif');
+    width: 14px;
+    height: 14px;
+}
+
+.jqx-grid-cell-alt {
+    background-color: #F7F7F7;
+}
+.jqx-grid-cell {
+    border-color: transparent ! important;
+}
+.jqx-grid-cell {
+    font-size: 11px;
+}
+
+/* Resizes for portriat mode on smaller/mobile devices */
+@media only screen and (max-width: 475px) {
+    .available-columns-list, .selected-columns-list {
+        height: 130px;
+    }
+
+    .select-buttons {
+        margin-left: 85px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        float: none;
+    }
+
+    .reorder-buttons {
+        margin-right: 0px;
+    }
+
+    .available-columns, .selected-columns {
+        margin-left: 15px;
+    }
+
+    .available-columns {
+        float: none;
+    }
+
+    .available-columns-list {
+        width: 200px;
+    }
+
+    .selected-columns {
+        clear: both;
+    }
+
+    .selected-columns h3 {
+        margin-top: 15px;
+    }
+
+    .select-button-add, .select-button-remove {
+        float: left;
+    }
+
+    .select-button-add {
+        background-image: url('../../../css/styles/images/icon-down.png');
+    }
+
+    .select-button-remove {
+        background-image: url('../../../css/styles/images/icon-up.png');
+    }
+}

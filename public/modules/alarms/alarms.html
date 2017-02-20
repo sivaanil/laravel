@@ -1,0 +1,65 @@
+
+<div id="mainAlarmDiv" ng-app="alarms" ng-controller="alarmCtrl as acl">
+    <div id="alarmTitleBar">
+        <h4>
+            <span id="alarmTitleBarHeading">
+                {!! alarmLocalization.title !!}
+            </span>
+
+            <div id="alarmTabMenuContainer">
+                <div ng-controller="menuCtrl as alarmTabMenuCtrl" style="visibility: hidden" id="alarmTabMenu"
+                     divid="alarmTabMenu">
+                    <menu-component
+                            divid="alarmTabMenu"
+                            source="menu"
+                            theme="custom"
+                            nodeid="{!! rootScope.$nodeId !!}"
+                            style="display: none;"
+                            >
+                    </menu-component>
+                    <ul>
+                        <li id="tab-active-alarms" data-toggle="tooltip" data-placement="top"  title="{!! alarmLocalization.activeAlarmsTooltip !!}" class="tab">{!! alarmLocalization.activeAlarms !!}</li>
+                        <li id="tab-cleared-alarms" data-toggle="tooltip" data-placement="top"  title="{!! alarmLocalization.clearedAlarmsTooltip !!}" class="tab">{!! alarmLocalization.clearedAlarms !!}</li>
+                        <li id="tab-all-alarms"  data-toggle="tooltip" data-placement="top"  title="{!! alarmLocalization.allAlarmsTooltip !!}"class="tab">{!! alarmLocalization.allAlarms !!}</li>
+                        <li id="tab-ignored-alarms" data-toggle="tooltip" data-placement="top"  title="{!! alarmLocalization.ignoredAlarmsTooltip !!}" class="tab">{!! alarmLocalization.ignoredAlarms !!}</li>
+                        <li id="tab-custom-filters" data-toggle="tooltip" data-placement="top"  title="{!! alarmLocalization.customAlarmsTooltip !!}" class="tab">{!! alarmLocalization.custom !!}</li>
+                    </ul>
+                </div>
+            </div>
+            <div ng-controller="menuCtrl as alarmMenuCtrl" style="visibility: hidden" id="alarmMenu"
+                 divid="alarmMenu">
+                <menu-component
+                        divid="alarmMenu"
+                        source="menu"
+                        theme="custom"
+                        nodeid="{{$nodeId}}"
+                        style="display: none;"
+                        >
+                </menu-component>
+                <ul></ul>
+            </div>
+        </h4>
+    </div>
+    <div ng-app="gridwithfilters" style="height:100%">
+        <div ng-controller="gridwithfiltersCtrl" style="height:100%">
+            <grid-with-filters-component
+                    id="alarmGridWithFilters"
+                    divid="alarms"
+                    module="alarm"
+
+                    nodeid="{!! rootScope.$nodeId !!}"
+                    disabledraganddrop=false
+                    rowdetailsformat="grid"
+                    altrow=false
+                    pageable=true
+                    gridtitle="{!! alarmLocalization.gridTitle !!}"
+                    localizedemptrydatastring="{!! alarmLocalization.gridEmptyData !!}"
+
+                    filter-groups="filterList"
+                    hideallcb=false
+                    >
+            </grid-with-filters-component>
+        </div>
+    </div>
+
+</div>

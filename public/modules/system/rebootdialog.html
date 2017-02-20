@@ -1,0 +1,19 @@
+<div  ng-controller="formCtrl as form" data-url="/system/reboot" form-component>
+  <form class="form-horizontal" role="form" ng-controller="systemCtrl as system" reboot-dialog>
+    <div class="container-fluid">
+      <div class="dialog-main-content">
+        <p>Are you sure you wish to reboot the SiteGate?</p>
+        <p class="type-reboot-prompt">Type REBOOT to confirm</p>
+        <input type="text" name="rebootConfirm" id="rebootConfirm" ng-model="formData.rebootConfirm">
+      </div>
+      <div class="dialog-footer-buttons">
+        <div class="reboot-device-confirm-button" ng-click="submitForm('rebootSystem')">
+          <img src="./img/icons/reboot.png"> Reboot
+        </div>
+        <div class="close-reboot-window-button" ng-click="closeRebootSystemWindow()">
+          <img src="./img/icons/cancel.png"> Close
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

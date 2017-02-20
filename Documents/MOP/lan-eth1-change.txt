@@ -1,0 +1,68 @@
+Updating the LAN port after an upgrade from before SiteGate 2.1-RC4.
+--------------------------------------------------------------------
+
+This fix only applies to a few earlier SiteGate 2s that received code prior to SiteGate 2.1-RC4.
+
+Scanning will be stopped for about 30 minutes.
+
+SiteGate 2.1-RC4 and later assigns the LAN port to eth1.  This is a change from previous versions. The physical port is determined by the front panel labeling. This means that we need to change the mapping between physical ports (mac addresses) and interface names (eth numbers).
+
+Previously, the LAN port was the highest eth number. "Highest" here means the last eth when sorted in alphabetical order. This means that on a device with more than ten ports, the LAN port is eth9 rather then something like eth15 as might be expected.
+
+The file that needs editing is:
+
+/etc/udev/rules.d/70-persistent-net.rules
+
+Steps:
+
+1) Stop scanning:
+
+mysql -u root -p mysql -e"UPDATE cswapi_unified.css_general_config SET var1 = 0 WHERE setting_name = 'enable_scan';"
+
+2) Wait 15 minutes for current scans to end
+
+3) Do this to determine what the LAN port is now.
+
+more /etc/network/interfaces.d/console.conf
+
+The file names here are confusing because of a previous change.
+console.conf defines what we're now calling LAN port.
+lan.conf in the same directory defines the device ports.
+wan.conf is the WAN port.
+
+If the SiteGate has ten or less ports then the LAN port is one eth number less than the number of ports because they are numbered from zero. e.g., on a six port SiteGate, the LAN port will be eth5. If the SiteGate has more than ten ports, the LAN port is eth9.
+
+4) Upgrade /home/sites/unified to the new release.
+
+5) Edit the file /etc/udev/rules.d/70-persistent-net.rules. It is important not to break lines so if you're using nano, use the -w switch.
+
+sudo nano -w /etc/udev/rules.d/70-persistent-net.rules
+
+If you want to make a backup of the file, don't make it in the same directory. Copy it to somewhere like /home/c2-maintenance.
+
+As a sanity check on step 1 above, the mac address of the current LAN port is probably one mac address "more" than the mac address for eth0.
+
+5) Swap the eth numbers between eth1 and the current LAN port. e.g., if the current LAN port is eth5 then change NAME="eth5" to NAME="eth1" and then change the original NAME="eth1" to NAME="eth5". 
+
+It is important not to disturb the eth0 line.
+
+6) Login to the SiteGate web UI, go to LAN Settings and hit Save.
+
+7) Check the LAN port again with:
+
+more /etc/network/interfaces.d/console.conf
+It should now be eth1.
+
+Check the device ports with:
+
+more /etc/network/interfaces.d/lan.conf
+The bridge_ports should be all ports from eth2 and above. Order does not matter.
+
+8) sudo reboot
+
+It usually take a minute or two to return.
+Verify access.
+
+9) Enable scanning.
+
+mysql -u root -p mysql -e"UPDATE cswapi_unified.css_general_config SET var1 = 1 WHERE setting_name = 'enable_scan';"

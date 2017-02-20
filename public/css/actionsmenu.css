@@ -1,0 +1,26 @@
+
+#mainActionContainer {
+
+    margin: 35px;
+    position: relative;
+
+}
+
+.largeText {
+    font-size: large;
+    font-weight: bold;
+}
+
+/*css hack needed to override the '.button' margins*/
+#actionButtonContainer {
+
+    width: 200px;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+#actionButtonContainer a {
+
+    width: 200px;
+
+}
